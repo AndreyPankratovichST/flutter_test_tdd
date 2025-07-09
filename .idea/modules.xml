@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/flutter_test_tdd.iml" filepath="$PROJECT_DIR$/.idea/flutter_test_tdd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/flutter_test_tdd_android.iml" filepath="$PROJECT_DIR$/android/flutter_test_tdd_android.iml" />
     </modules>
   </component>
 </project>
