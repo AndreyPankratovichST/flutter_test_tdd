@@ -4,10 +4,10 @@ import 'package:flutter_test_tdd/core/usecase/usecase.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/repository/listing_repository.dart';
 
-final class GetListing extends UseCase<List<ListItemEntity>, Params> {
+class GetListingUseCase extends UseCase<List<ListItemEntity>, Params> {
   final ListingRepository _repository;
 
-  GetListing(this._repository);
+  GetListingUseCase(this._repository);
 
   @override
   Future<Result<List<ListItemEntity>>> call(Params params) =>

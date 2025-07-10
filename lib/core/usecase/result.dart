@@ -5,4 +5,15 @@ final class Result<T> {
   final Failure? failure;
 
   const Result({required this.result, required this.failure});
+
+  void then({
+    required Function(T) onResult,
+    required Function(Failure) onFailure,
+  }) {
+    if (result != null) {
+      onResult(result as T);
+    } else {
+      onFailure(failure as Failure);
+    }
+  }
 }

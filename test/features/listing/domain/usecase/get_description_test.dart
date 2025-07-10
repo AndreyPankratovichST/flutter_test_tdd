@@ -11,12 +11,12 @@ import 'get_listing_test.mocks.dart';
 
 @GenerateMocks([ListingRepository])
 void main() {
-  late GetDescription useCase;
+  late GetDescriptionUseCase useCase;
   late ListingRepository repository;
 
   setUp(() {
     repository = MockListingRepository();
-    useCase = GetDescription(repository);
+    useCase = GetDescriptionUseCase(repository);
   });
 
   final id = 1;
