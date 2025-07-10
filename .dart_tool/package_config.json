@@ -248,6 +248,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "go_router",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/go_router-16.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "graphs",
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/graphs-2.3.2",
       "packageUri": "lib/",

@@ -14,9 +14,9 @@ class DescriptionItemDto extends DescriptionItemEntity implements Dto {
     return DescriptionItemDto(
       id: json['id'] as int,
       title: json['title'] as String,
-      date: DateTime.parse(json['date'] as String),
+      date: DateTime.parse(json['published_timestamp'] as String),
       description: json['description'] as String,
-      image: json['image'] as String,
+      image: json['social_image'] as String,
     );
   }
 
@@ -25,9 +25,9 @@ class DescriptionItemDto extends DescriptionItemEntity implements Dto {
     return {
       'id': id,
       'title': title,
-      'date': date.toIso8601String(),
+      'published_timestamp': date.toIso8601String(),
       'description': description,
-      'image': image,
+      'social_image': image,
     };
   }
 }

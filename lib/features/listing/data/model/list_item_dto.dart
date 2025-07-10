@@ -8,7 +8,7 @@ class ListItemDto extends ListItemEntity implements Dto {
     return ListItemDto(
       id: json['id'] as int,
       title: json['title'] as String,
-      date: DateTime.parse(json['date'] as String),
+      date: DateTime.parse(json['published_timestamp'] as String),
     );
   }
 
@@ -17,7 +17,7 @@ class ListItemDto extends ListItemEntity implements Dto {
     return {
       'id': id,
       'title': title,
-      'date': date.toIso8601String(),
+      'published_timestamp': date.toIso8601String(),
     };
   }
 }

@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 @LazySingleton()
 class AppClient extends DioForNative {
   AppClient() {
-    options = BaseOptions(baseUrl: '');
+    options = BaseOptions(baseUrl: 'https://dev.to/api');
     interceptors.add(ErrorInterceptor());
   }
 }

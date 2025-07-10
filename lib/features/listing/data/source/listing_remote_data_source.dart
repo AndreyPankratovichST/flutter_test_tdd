@@ -18,20 +18,20 @@ final class ListingRemoteDataSourceImpl implements ListingRemoteDataSource {
 
   @override
   Future<List<ListItemDto>> getListing() async {
-    final response = await _dio.get<List<ListItemDto>>('/listing');
+    final response = await _dio.get<List<dynamic>>('/articles');
     final statusCode = response.statusCode ?? 500;
     if (statusCode >= 400 && statusCode <= 500) throw ServerException();
-    return response.data ?? [];
+    return response.data?.map((e) => ListItemDto.fromJson(e)).toList() ?? [];
   }
 
   @override
   Future<DescriptionItemDto> getDescription(int id) async {
-    final response = await _dio.get<DescriptionItemDto>('/listing/$id');
+    final response = await _dio.get('/articles/$id');
     final item = response.data;
     final statusCode = response.statusCode ?? 500;
     if (item == null || (statusCode >= 400 && statusCode <= 500)) {
       throw ServerException();
     }
-    return item;
+    return DescriptionItemDto.fromJson(item);
   }
 }
