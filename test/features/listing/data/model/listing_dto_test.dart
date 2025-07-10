@@ -23,7 +23,7 @@ void main() {
       'should return a valid model when the JSON number is an integer',
           () async {
         final Map<String, dynamic> jsonMap =
-        json.decode(fixture('listing.json'));
+        json.decode(fixture('list_item.json'));
         final result = ListItemDto.fromJson(jsonMap);
         expect(result, tListingDto);
       },
