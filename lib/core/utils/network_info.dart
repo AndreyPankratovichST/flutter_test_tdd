@@ -1,9 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
 
+@LazySingleton(as: NetworkInfo)
 final class NetworkInfoImpl implements NetworkInfo {
   final Connectivity connectivity;
 

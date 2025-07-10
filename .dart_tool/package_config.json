@@ -272,6 +272,18 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "injectable",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable-2.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "injectable_generator",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable_generator-2.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "io",
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/io-1.0.5",
       "packageUri": "lib/",
@@ -432,6 +444,12 @@
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
+    },
+    {
+      "name": "recase",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/recase-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences",

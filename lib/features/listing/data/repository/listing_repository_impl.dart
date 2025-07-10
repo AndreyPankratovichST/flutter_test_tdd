@@ -6,7 +6,9 @@ import 'package:flutter_test_tdd/features/listing/data/source/listing_remote_dat
 import 'package:flutter_test_tdd/features/listing/domain/entity/description_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/repository/listing_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: ListingRepository)
 final class ListingRepositoryImpl implements ListingRepository {
   final ListingRemoteDataSource remoteDataSource;
   final ListingLocalDataSource localDataSource;

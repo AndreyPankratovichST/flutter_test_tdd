@@ -166,6 +166,14 @@ http_parser
 3.4
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/http_parser-4.1.2/
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/http_parser-4.1.2/lib/
+injectable
+3.0
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable-2.5.0/
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable-2.5.0/lib/
+injectable_generator
+3.0
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable_generator-2.7.0/
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable_generator-2.7.0/lib/
 io
 3.4
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/io-1.0.5/
@@ -274,6 +282,10 @@ pubspec_parse
 3.6
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0/lib/
+recase
+2.12
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/recase-4.1.0/
+file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/recase-4.1.0/lib/
 shared_preferences
 3.5
 file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3/

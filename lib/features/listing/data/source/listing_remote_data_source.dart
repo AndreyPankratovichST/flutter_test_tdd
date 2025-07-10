@@ -1,7 +1,8 @@
+import 'package:flutter_test_tdd/core/client/client.dart';
 import 'package:flutter_test_tdd/core/errors/exception.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/description_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
-import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class ListingRemoteDataSource {
   Future<List<ListItemDto>> getListing();
@@ -9,10 +10,11 @@ abstract class ListingRemoteDataSource {
   Future<DescriptionItemDto> getDescription(int id);
 }
 
+@LazySingleton(as: ListingRemoteDataSource)
 final class ListingRemoteDataSourceImpl implements ListingRemoteDataSource {
-  final Dio _dio;
+  final AppClient _dio;
 
-  ListingRemoteDataSourceImpl({required Dio dio}) : _dio = dio;
+  ListingRemoteDataSourceImpl({required AppClient dio}) : _dio = dio;
 
   @override
   Future<List<ListItemDto>> getListing() async {
