@@ -19,13 +19,14 @@ const String kListing = 'LISTING';
 const String kDescription = 'DESCRIPTION';
 
 final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences _sharedPreferences;
 
-  ListingLocalDataSourceImpl({required this.sharedPreferences});
+  ListingLocalDataSourceImpl({required SharedPreferences sharedPreferences})
+    : _sharedPreferences = sharedPreferences;
 
   @override
   Future<void> cacheListing(List<ListItemDto> listing) async {
-    await sharedPreferences.setStringList(
+    await _sharedPreferences.setStringList(
       kListing,
       listing.map((e) => jsonEncode(e.toJson())).toList(),
     );
@@ -33,7 +34,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
 
   @override
   Future<List<ListItemDto>> getListing() async {
-    final jsonString = sharedPreferences.getStringList(kListing);
+    final jsonString = _sharedPreferences.getStringList(kListing);
     if (jsonString == null) throw CacheException();
 
     return jsonString.map((e) => ListItemDto.fromJson(jsonDecode(e))).toList();
@@ -41,7 +42,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
 
   @override
   Future<void> cacheDescription(DescriptionItemDto description) async {
-    await sharedPreferences.setString(
+    await _sharedPreferences.setString(
       '$kDescription${description.id}',
       jsonEncode(description),
     );
@@ -49,7 +50,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
 
   @override
   Future<DescriptionItemDto> getDescription(int id) async {
-    final jsonString = sharedPreferences.getString('$kDescription$id');
+    final jsonString = _sharedPreferences.getString('$kDescription$id');
     if (jsonString == null) throw CacheException();
 
     return DescriptionItemDto.fromJson(jsonDecode(jsonString));
