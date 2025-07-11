@@ -43,7 +43,7 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
     return Material(
       color: context.theme.scaffoldBackgroundColor,
       child: BlocListener<ReadingBloc, ReadingState>(
-        bloc:  _readingBloc,
+        bloc: _readingBloc,
         listener: _saveToReadableListener,
         child: Column(
           children: [
@@ -68,17 +68,19 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
     );
   }
 
-  void _successLoadingListener(BuildContext context, DescriptionState state) => switch (state) {
-    DescriptionSuccessState() => _readingBloc.add(
-      SaveReadEvent(state.description),
-    ),
-    _ => null,
-  };
+  void _successLoadingListener(BuildContext context, DescriptionState state) =>
+      switch (state) {
+        DescriptionSuccessState() => _readingBloc.add(
+          SaveReadEvent(state.description),
+        ),
+        _ => null,
+      };
 
-  void _saveToReadableListener(BuildContext context, ReadingState state) => switch (state) {
-    ReadingSuccessOperationState() => BlocProvider.of<ReadableBloc>(context).add(
-      GetReadableEvent(),
-    ),
-    _ => null,
-  };
+  void _saveToReadableListener(BuildContext context, ReadingState state) =>
+      switch (state) {
+        ReadingSuccessOperationState() => BlocProvider.of<ReadableBloc>(
+          context,
+        ).add(GetReadableEvent()),
+        _ => null,
+      };
 }
