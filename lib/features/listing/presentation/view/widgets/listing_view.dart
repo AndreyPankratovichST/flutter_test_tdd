@@ -19,7 +19,7 @@ class ListingView extends StatelessWidget {
         return ListTile(
           key: ValueKey(item.id),
           title: Text(item.title, textAlign: TextAlign.justify, style: context.textTheme.titleMedium),
-          subtitle: Text(item.date.print, style: context.textTheme.bodyMedium),
+          subtitle: Text(item.date.print, style: context.textTheme.bodySmall),
           onTap: () => context.goNamed(
             Routes.details,
             pathParameters: {'id': item.id.toString()},
