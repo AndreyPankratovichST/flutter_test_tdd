@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/core/extensions/date_time.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/description_item_entity.dart';
 
@@ -16,11 +17,15 @@ class DescriptionView extends StatelessWidget {
         Text(
           description.title,
           textAlign: TextAlign.start,
-          style: const TextStyle(fontSize: 20),
+          style: context.textTheme.titleLarge,
         ),
-        Text(description.date.print, style: const TextStyle(fontSize: 10)),
+        Text(description.date.print, style: context.textTheme.bodySmall),
         if (description.image.isNotEmpty) Image.network(description.image),
-        Text(description.description, textAlign: TextAlign.justify),
+        Text(
+          description.description,
+          textAlign: TextAlign.justify,
+          style: context.textTheme.bodyLarge,
+        ),
       ],
     );
   }

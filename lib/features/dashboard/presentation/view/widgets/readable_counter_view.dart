@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 
 class ReadableCounterView extends StatelessWidget {
   final int count;
@@ -12,15 +13,9 @@ class ReadableCounterView extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          Text(
-            'dashboard.all_read'.tr(),
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
+          Text('dashboard.all_read'.tr(), style: context.textTheme.titleLarge),
           Spacer(),
-          Text(
-            count.toString(),
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
+          Text(count.toString(), style: context.textTheme.titleLarge),
         ],
       ),
     );
