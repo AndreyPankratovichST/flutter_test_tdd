@@ -10,7 +10,7 @@ final class Result<T> {
     required Function(T) onSuccess,
     required Function(Failure) onFailure,
   }) {
-    if (data != null) {
+    if (data != null || failure == null) {
       onSuccess(data as T);
     } else {
       onFailure(failure as Failure);
