@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ReadableCounterView extends StatelessWidget {
@@ -12,7 +13,7 @@ class ReadableCounterView extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'All read articles',
+            'dashboard.all_read'.tr(),
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           Spacer(),

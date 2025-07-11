@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_test_tdd/config/router/routes.dart';
 import 'package:flutter_test_tdd/core/extensions/string.dart';
 import 'package:flutter_test_tdd/features/dashboard/presentation/view/dashboard_screen.dart';
@@ -33,7 +34,9 @@ final class AppRouter {
                     path: '${Routes.details}/:id',
                     builder: (_, state) {
                       final id = state.pathParameters['id'].toInt;
-                      if (id == null) throw Exception('Invalid id');
+                      if (id == null) {
+                        throw Exception('failure.invalid_id'.tr());
+                      }
                       return DescriptionScreen(id: id);
                     },
                   ),

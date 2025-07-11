@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_tdd/features/home/presentation/view/widgets/home_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -16,14 +17,14 @@ class HomeScreen extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: shell.currentIndex,
           onTap: (index) => _onTap(index),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard_outlined),
-              label: 'Home',
+              icon: const Icon(Icons.dashboard_outlined),
+              label: 'home.dashboard'.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.format_list_bulleted_rounded),
-              label: 'Profile',
+              icon: const Icon(Icons.format_list_bulleted_rounded),
+              label: 'home.listing'.tr(),
             ),
           ],
         ),
