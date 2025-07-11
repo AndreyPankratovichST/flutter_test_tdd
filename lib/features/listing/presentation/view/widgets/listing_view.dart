@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_tdd/config/router/routes.dart';
+import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/core/extensions/date_time.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:go_router/go_router.dart';
@@ -17,8 +18,8 @@ class ListingView extends StatelessWidget {
         final item = items[index];
         return ListTile(
           key: ValueKey(item.id),
-          title: Text(item.title, textAlign: TextAlign.justify),
-          subtitle: Text(item.date.print),
+          title: Text(item.title, textAlign: TextAlign.justify, style: context.textTheme.titleMedium),
+          subtitle: Text(item.date.print, style: context.textTheme.bodySmall),
           onTap: () => context.goNamed(
             Routes.details,
             pathParameters: {'id': item.id.toString()},

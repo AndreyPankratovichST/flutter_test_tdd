@@ -1,0 +1,13 @@
+{
+  "app_name": "Flutter TDD",
+  "dashboard": {
+    "all_read": "All read articles"
+  },
+  "failure": {
+    "invalid_id": "Invalid id"
+  },
+  "home": {
+    "dashboard": "Dashboard",
+    "listing": "Articles"
+  }
+}

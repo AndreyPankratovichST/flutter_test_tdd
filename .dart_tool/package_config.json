@@ -170,6 +170,18 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "easy_localization",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/easy_localization-3.0.7+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "easy_logger",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/easy_logger-0.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/equatable-2.0.7",
       "packageUri": "lib/",
@@ -216,6 +228,12 @@
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "flutter_localizations",
+      "rootUri": "file:///Users/pankratovich_as/development/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_test",
@@ -288,6 +306,12 @@
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/injectable_generator-2.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/intl-0.20.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "io",
