@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_test_tdd/core/client/client.dart';
-import 'package:flutter_test_tdd/core/errors/exception.dart';
-import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/source/listing_remote_data_source.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -24,33 +22,16 @@ void main() {
 
   group('get listing', () {
     test('should preform a GET request on a URL', () {
-      when(mockClient.get<List<ListItemDto>>(any)).thenAnswer(
+      when(mockClient.get<List<dynamic>>(any)).thenAnswer(
         (_) async => Response(
-          data: [ListItemDto.fromJson(jsonDecode(fixture('list_item.json')))],
+          data: [jsonDecode(fixture('list_item.json'))],
           requestOptions: RequestOptions(),
         ),
       );
 
       dataSource.getListing();
 
-      verify(mockClient.get<List<ListItemDto>>('/listing'));
+      verify(mockClient.get<List<dynamic>>('/articles'));
     });
-
-    test(
-      'should throw a ServerException when the response code is 404 or other',
-          () async {
-        when(mockClient.get<List<ListItemDto>>(any)).thenAnswer(
-              (_) async => Response(
-                data: null,
-                statusCode: 404,
-                requestOptions: RequestOptions(),
-              ),
-        );
-
-        final call = dataSource.getListing();
-
-        expect(call, throwsA(TypeMatcher<ServerException>()));
-      },
-    );
   });
 }

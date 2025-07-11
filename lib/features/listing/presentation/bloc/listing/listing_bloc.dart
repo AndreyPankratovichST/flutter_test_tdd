@@ -24,7 +24,7 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
   ) async {
     final result = await _getListingUseCase(Params());
     result.then(
-      onResult: (value) => emit(ListingSuccessState(value)),
+      onSuccess: (value) => emit(ListingSuccessState(value)),
       onFailure: (failure) => emit(ListingErrorState(failure)),
     );
   }

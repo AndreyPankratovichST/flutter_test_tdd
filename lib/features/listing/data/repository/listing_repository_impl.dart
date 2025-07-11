@@ -47,4 +47,14 @@ final class ListingRepositoryImpl implements ListingRepository {
     }
     return items;
   }
+
+  @override
+  Future<void> saveReadableListItem(ListItemEntity listItemEntity) =>
+      localDataSource.saveReadableListItem(
+        ListItemDto(
+          id: listItemEntity.id,
+          title: listItemEntity.title,
+          date: listItemEntity.date,
+        ),
+      );
 }

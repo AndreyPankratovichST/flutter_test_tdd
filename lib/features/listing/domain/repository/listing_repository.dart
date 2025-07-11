@@ -6,4 +6,6 @@ abstract class ListingRepository {
   Future<List<ListItemEntity>> getListing();
 
   Future<DescriptionItemEntity> getDescription(final int id);
+
+  Future<void> saveReadableListItem(ListItemEntity listItemEntity);
 }

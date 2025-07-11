@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test_tdd/config/router/routes.dart';
 import 'package:flutter_test_tdd/core/extensions/string.dart';
+import 'package:flutter_test_tdd/features/dashboard/presentation/view/dashboard_screen.dart';
 import 'package:flutter_test_tdd/features/home/presentation/view/home_screen.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/view/screens/description_screen.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/view/screens/listing_screen.dart';
@@ -17,7 +17,7 @@ final class AppRouter {
               GoRoute(
                 name: Routes.dashboard,
                 path: '/',
-                builder: (_, __) => SizedBox.shrink(),
+                builder: (_, __) => const DashboardScreen(),
               ),
             ],
           ),

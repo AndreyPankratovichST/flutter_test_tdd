@@ -38,7 +38,7 @@ void main() {
         final expectedJsonMap = {
           "id": 1,
           "title": "Item #1",
-          "date": "2025-01-10T00:00:00.000"
+          "published_timestamp": "2025-01-10T00:00:00.000"
         };
         expect(result, expectedJsonMap);
       },

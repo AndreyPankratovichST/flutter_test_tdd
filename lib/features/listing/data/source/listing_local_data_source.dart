@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test_tdd/core/errors/exception.dart';
+import 'package:flutter_test_tdd/features/dashboard/data/model/readable_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/description_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
 import 'package:injectable/injectable.dart';
@@ -14,10 +15,16 @@ abstract class ListingLocalDataSource {
   Future<void> cacheDescription(DescriptionItemDto description);
 
   Future<DescriptionItemDto> getDescription(int id);
+
+  Future<void> saveReadableListItem(ListItemDto listItemDto);
+
+  Future<ReadableDto> getReadable();
 }
 
 const String kListing = 'LISTING';
 const String kDescription = 'DESCRIPTION';
+const String kListItem = 'LIST_ITEM';
+const String kReadableItems = 'READABLE_ITEMS';
 
 @LazySingleton(as: ListingLocalDataSource)
 final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
@@ -56,5 +63,28 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
     if (jsonString == null) throw CacheException();
 
     return DescriptionItemDto.fromJson(jsonDecode(jsonString));
+  }
+
+  @override
+  Future<void> saveReadableListItem(ListItemDto listItemDto) async {
+    final readable = await getReadable();
+    final items = readable.items
+        .map((e) => ListItemDto(id: e.id, title: e.title, date: e.date))
+        .toSet();
+    items.add(listItemDto);
+    final updatedReadable = readable.copyWith(
+      allReadable: readable.allReadable + 1,
+      items: items.toList(),
+    );
+    final jsonString = jsonEncode(updatedReadable.toJson());
+
+    await _sharedPreferences.setString(kReadableItems, jsonString);
+  }
+
+  @override
+  Future<ReadableDto> getReadable() async {
+    final jsonString = _sharedPreferences.getString(kReadableItems);
+    if (jsonString == null) return const ReadableDto(allReadable: 0, items: []);
+    return ReadableDto.fromJson(jsonDecode(jsonString));
   }
 }

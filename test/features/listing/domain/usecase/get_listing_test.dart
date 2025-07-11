@@ -29,7 +29,7 @@ void main() {
 
       final result = await useCase(Params());
 
-      expect(result.result, tListing);
+      expect(result.data, tListing);
       verify(repository.getListing());
       verifyNoMoreInteractions(repository);
     });
