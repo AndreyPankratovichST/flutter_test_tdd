@@ -1,16 +1,15 @@
 import 'package:flutter_test_tdd/core/repository/dto.dart';
 import 'package:flutter_test_tdd/features/dashboard/domain/entity/readable_entity.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
-import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 
 class ReadableDto extends ReadableEntity implements Dto {
-  const ReadableDto({required super.allReadable, required super.list});
+  const ReadableDto({required super.allReadable, required super.items});
 
   factory ReadableDto.fromJson(Map<String, dynamic> json) {
     final list = json['items'] as List<dynamic>;
     return ReadableDto(
       allReadable: json['readable'] as int,
-      list: list.map((e) => ListItemDto.fromJson(e)).toList(),
+      items: list.map((e) => ListItemDto.fromJson(e)).toList(),
     );
   }
 
@@ -18,7 +17,7 @@ class ReadableDto extends ReadableEntity implements Dto {
   Map<String, dynamic> toJson() {
     return {
       'readable': allReadable,
-      'items': list
+      'items': items
           .map(
             (e) => ListItemDto(id: e.id, title: e.title, date: e.date).toJson(),
           )
@@ -26,13 +25,10 @@ class ReadableDto extends ReadableEntity implements Dto {
     };
   }
 
-  ReadableDto copyWith({
-    int? allReadable,
-    List<ListItemEntity>? list,
-  }) {
+  ReadableDto copyWith({int? allReadable, List<ListItemDto>? items}) {
     return ReadableDto(
       allReadable: allReadable ?? this.allReadable,
-      list: list ?? this.list,
+      items: items ?? this.items,
     );
   }
 }

@@ -19,7 +19,7 @@ void main() {
     bloc = ReadableBloc(mockUseCase);
   });
 
-  final tReadableEntity = ReadableEntity(allReadable: 1, list: []);
+  final tReadableEntity = ReadableEntity(allReadable: 1, items: []);
   
   group('readable bloc', () {
     test('initialState should be ReadableInitialState', () {

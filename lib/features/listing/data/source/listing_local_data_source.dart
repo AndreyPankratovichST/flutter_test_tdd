@@ -68,9 +68,13 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
   @override
   Future<void> saveReadableListItem(ListItemDto listItemDto) async {
     final readable = await getReadable();
+    final items = readable.items
+        .map((e) => ListItemDto(id: e.id, title: e.title, date: e.date))
+        .toSet();
+    items.add(listItemDto);
     final updatedReadable = readable.copyWith(
       allReadable: readable.allReadable + 1,
-      list: [...readable.list, listItemDto],
+      items: items.toList(),
     );
     final jsonString = jsonEncode(updatedReadable.toJson());
 
@@ -80,7 +84,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
   @override
   Future<ReadableDto> getReadable() async {
     final jsonString = _sharedPreferences.getString(kReadableItems);
-    if (jsonString == null) return const ReadableDto(allReadable: 0, list: []);
+    if (jsonString == null) return const ReadableDto(allReadable: 0, items: []);
     return ReadableDto.fromJson(jsonDecode(jsonString));
   }
 }

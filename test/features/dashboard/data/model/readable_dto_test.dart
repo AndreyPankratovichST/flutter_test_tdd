@@ -14,7 +14,7 @@ void main() {
     title: 'Item #1',
     date: DateTime(2025, 01, 10),
   );
-  final tReadableDto = ReadableDto(allReadable: tCount, list: [tListItemDto]);
+  final tReadableDto = ReadableDto(allReadable: tCount, items: [tListItemDto]);
 
   test(
     'check dto extends ReadableEntity',

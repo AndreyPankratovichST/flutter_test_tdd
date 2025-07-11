@@ -17,7 +17,7 @@ void main() {
     repository = DashboardReadableImpl(localDataSource);
   });
 
-  final tReadableDto = ReadableDto(allReadable: 1, list: []);
+  final tReadableDto = ReadableDto(allReadable: 1, items: []);
 
   group('dashboard repository', () {
     test('should return a readable', () async {

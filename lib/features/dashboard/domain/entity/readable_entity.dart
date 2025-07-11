@@ -3,10 +3,10 @@ import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity
 
 class ReadableEntity extends Equatable {
   final int allReadable;
-  final List<ListItemEntity> list;
+  final List<ListItemEntity> items;
 
-  const ReadableEntity({required this.allReadable, required this.list});
+  const ReadableEntity({required this.allReadable, required this.items});
 
   @override
-  List<Object?> get props => [allReadable, list];
+  List<Object?> get props => [allReadable, items];
 }
