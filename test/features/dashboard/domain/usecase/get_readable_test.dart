@@ -24,7 +24,7 @@ void main() {
     test('should get readable from the repository', () async {
       when(
         mockRepository.getReadable(),
-      ).thenAnswer((_) async => ReadableEntity());
+      ).thenAnswer((_) async => const ReadableEntity(allReadable: 0, list: []));
 
       final result = await useCase.call(Params());
 

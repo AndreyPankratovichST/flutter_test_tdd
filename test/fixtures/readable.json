@@ -1,0 +1,10 @@
+{
+  "readable": 1,
+  "items": [
+    {
+      "id": 1,
+      "title": "Item #1",
+      "published_timestamp": "2025-01-10T00:00:00.000"
+    }
+  ]
+}
