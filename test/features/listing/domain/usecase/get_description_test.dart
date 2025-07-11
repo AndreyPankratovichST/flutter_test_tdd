@@ -35,7 +35,7 @@ void main() {
 
       final result = await useCase(DescriptionParams(id));
 
-      expect(result.result, tDescription);
+      expect(result.data, tDescription);
       verify(repository.getDescription(id));
       verifyNoMoreInteractions(repository);
     });

@@ -29,7 +29,7 @@ void main() {
     });
 
     test('should emit when call get listing event returns success', () async {
-      final result = Result(result: tListing, failure: null);
+      final result = Result(data: tListing, failure: null);
       provideDummy<Result<List<ListItemEntity>>>(result);
 
       when(mockGetListingUseCase(any)).thenAnswer((_) async => result);
@@ -44,7 +44,7 @@ void main() {
 
     test('should emit when call get listing event returns failure', () async {
       final failure = ServerFailure('Server Failure');
-      final result = Result<List<ListItemEntity>>(result: null, failure: failure);
+      final result = Result<List<ListItemEntity>>(data: null, failure: failure);
       provideDummy<Result<List<ListItemEntity>>>(result);
 
       when(mockGetListingUseCase(any)).thenAnswer((_) async => result);

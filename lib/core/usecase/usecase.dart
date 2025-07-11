@@ -18,6 +18,6 @@ abstract class UseCase<Type, Args extends Params?> {
     } catch (e) {
       failure = PlatformFailure(e.toString());
     }
-    return Result<T>(result: result, failure: failure);
+    return Result<T>(data: result, failure: failure);
   }
 }

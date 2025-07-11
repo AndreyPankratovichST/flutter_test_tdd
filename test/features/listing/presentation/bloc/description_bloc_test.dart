@@ -34,7 +34,7 @@ void main() {
     });
 
     test('should emit when call get description event returns success', () async {
-      final result = Result(result: tDescription, failure: null);
+      final result = Result(data: tDescription, failure: null);
       provideDummy<Result<DescriptionItemEntity>>(result);
 
       when(mockGetDescriptionUseCase(any)).thenAnswer((_) async => result);
@@ -49,7 +49,7 @@ void main() {
 
     test('should emit when call get description event returns failure', () async {
       final failure = ServerFailure('Server Failure');
-      final result = Result<DescriptionItemEntity>(result: null, failure: failure);
+      final result = Result<DescriptionItemEntity>(data: null, failure: failure);
       provideDummy<Result<DescriptionItemEntity>>(result);
 
       when(mockGetDescriptionUseCase(any)).thenAnswer((_) async => result);

@@ -14,10 +14,14 @@ abstract class ListingLocalDataSource {
   Future<void> cacheDescription(DescriptionItemDto description);
 
   Future<DescriptionItemDto> getDescription(int id);
+
+  Future<void> saveReadableListItem(ListItemDto listItemDto);
 }
 
 const String kListing = 'LISTING';
 const String kDescription = 'DESCRIPTION';
+const String kListItem = 'LIST_ITEM';
+const String kReadableItems = 'READABLE_ITEMS';
 
 @LazySingleton(as: ListingLocalDataSource)
 final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
@@ -56,5 +60,12 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
     if (jsonString == null) throw CacheException();
 
     return DescriptionItemDto.fromJson(jsonDecode(jsonString));
+  }
+
+  @override
+  Future<void> saveReadableListItem(ListItemDto listItemDto) async {
+    final jsonString = _sharedPreferences.getStringList(kReadableItems) ?? [];
+    jsonString.add(jsonEncode(listItemDto));
+    await _sharedPreferences.setStringList(kReadableItems, jsonString);
   }
 }

@@ -24,7 +24,7 @@ class DescriptionBloc extends Bloc<DescriptionEvent, DescriptionState> {
     final id = event.id;
     final result = await _getDescriptionUseCase(DescriptionParams(id));
     result.then(
-      onResult: (value) => emit(DescriptionSuccessState(value)),
+      onSuccess: (value) => emit(DescriptionSuccessState(value)),
       onFailure: (failure) => emit(DescriptionErrorState(failure)),
     );
   }
