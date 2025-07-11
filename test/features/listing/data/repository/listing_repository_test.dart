@@ -101,13 +101,12 @@ void main() {
       test(
         'should cache the data locally when the call to remote data source is successful',
         () async {
-          // arrange
           when(
             mockRemoteDataSource.getListing(),
           ).thenAnswer((_) async => [tListItemDto]);
-          // act
+
           await repository.getListing();
-          // assert
+
           verify(mockRemoteDataSource.getListing());
           verify(mockLocalDataSource.cacheListing([tListItemDto]));
         },
@@ -118,13 +117,12 @@ void main() {
       test(
         'should return last locally cached data when the cached data is present',
         () async {
-          // arrange
           when(
             mockLocalDataSource.getListing(),
           ).thenAnswer((_) async => [tListItemDto]);
-          // act
+
           final result = await repository.getListing();
-          // assert
+
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource.getListing());
           expect(result, equals([tListItemDto]));

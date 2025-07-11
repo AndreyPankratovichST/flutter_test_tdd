@@ -1,6 +1,7 @@
 import 'package:flutter_test_tdd/core/repository/dto.dart';
 import 'package:flutter_test_tdd/features/dashboard/domain/entity/readable_entity.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
+import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 
 class ReadableDto extends ReadableEntity implements Dto {
   const ReadableDto({required super.allReadable, required super.list});
@@ -23,5 +24,15 @@ class ReadableDto extends ReadableEntity implements Dto {
           )
           .toList(),
     };
+  }
+
+  ReadableDto copyWith({
+    int? allReadable,
+    List<ListItemEntity>? list,
+  }) {
+    return ReadableDto(
+      allReadable: allReadable ?? this.allReadable,
+      list: list ?? this.list,
+    );
   }
 }
