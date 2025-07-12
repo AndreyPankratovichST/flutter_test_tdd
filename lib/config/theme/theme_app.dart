@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 part 'theme_extension.dart';
+
 part 'theme_text_style.dart';
+
+part 'theme_notifier.dart';
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
   primaryColor: Colors.blue,

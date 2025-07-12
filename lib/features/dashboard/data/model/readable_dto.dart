@@ -10,11 +10,15 @@ class ReadableDto with _$ReadableDto{
   const factory ReadableDto({
     @JsonKey(name: 'readable')
     required int allReadable,
+    @JsonKey(toJson: itemsToJson)
     required List<ListItemDto> items,
   }) = _ReadableDto;
 
   factory ReadableDto.fromJson(Map<String, dynamic> json) => _$ReadableDtoFromJson(json);
 }
+
+List<Map<String, dynamic>> itemsToJson(List<ListItemDto> items) =>
+    items.map((e) => e.toJson()).toList();
 
 extension ReadableDtoX on ReadableDto {
   ReadableEntity toEntity() => ReadableEntity(

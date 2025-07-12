@@ -17,7 +17,7 @@ void main() {
 
   test(
     'check dto extends DescriptionItemEntity',
-    () async => expect(tDescriptionDto, isA<DescriptionItemEntity>()),
+    () async => expect(tDescriptionDto.toEntity(), isA<DescriptionItemEntity>()),
   );
 
   group('fromJson', () {
@@ -40,7 +40,7 @@ void main() {
         "id": 1,
         "title": "Item #1",
         "published_timestamp": "2025-01-10T00:00:00.000",
-        "description": "This is a description",
+        "body": "This is a description",
         "social_image": "image.png"
       };
       expect(result, expectedJsonMap);
