@@ -12,17 +12,18 @@ import 'listing_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([AppClient])
 void main() {
-  late ListingRemoteDataSourceImpl dataSource;
+  late ListingRemoteDataSource dataSource;
   late MockAppClient mockClient;
 
   setUp(() {
     mockClient = MockAppClient();
-    dataSource = ListingRemoteDataSourceImpl(dio: mockClient);
+    dataSource = ListingRemoteDataSource(mockClient);
+    when(mockClient.options).thenReturn(BaseOptions());
   });
 
   group('get listing', () {
     test('should preform a GET request on a URL', () {
-      when(mockClient.get<List<dynamic>>(any)).thenAnswer(
+      when(mockClient.fetch<List<dynamic>>(any)).thenAnswer(
         (_) async => Response(
           data: [jsonDecode(fixture('list_item.json'))],
           requestOptions: RequestOptions(),
@@ -31,7 +32,7 @@ void main() {
 
       dataSource.getListing();
 
-      verify(mockClient.get<List<dynamic>>('/articles'));
+      verify(mockClient.fetch<List<dynamic>>(any));
     });
   });
 }

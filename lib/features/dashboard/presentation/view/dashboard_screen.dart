@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_tdd/features/dashboard/presentation/bloc/readable/readable_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_test_tdd/features/dashboard/presentation/view/widgets/da
 import 'package:flutter_test_tdd/features/widgets/error_view.dart';
 import 'package:flutter_test_tdd/features/widgets/loading_indicator.dart';
 
+@RoutePage()
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 

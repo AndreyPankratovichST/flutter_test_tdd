@@ -3,13 +3,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_test_tdd/core/errors/failure.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/description_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/usecase/get_description.dart';
-import 'package:injectable/injectable.dart';
 
 part 'description_event.dart';
 
 part 'description_state.dart';
 
-@Injectable()
 class DescriptionBloc extends Bloc<DescriptionEvent, DescriptionState> {
   final GetDescriptionUseCase _getDescriptionUseCase;
 

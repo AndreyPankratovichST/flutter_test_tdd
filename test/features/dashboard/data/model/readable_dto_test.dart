@@ -18,7 +18,7 @@ void main() {
 
   test(
     'check dto extends ReadableEntity',
-    () async => expect(tReadableDto, isA<ReadableEntity>()),
+    () async => expect(tReadableDto.toEntity(), isA<ReadableEntity>()),
   );
 
   group('fromJson', () {

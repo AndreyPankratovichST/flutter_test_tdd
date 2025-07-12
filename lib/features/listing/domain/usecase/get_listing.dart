@@ -3,9 +3,7 @@ import 'package:flutter_test_tdd/core/usecase/result.dart';
 import 'package:flutter_test_tdd/core/usecase/usecase.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/repository/listing_repository.dart';
-import 'package:injectable/injectable.dart';
 
-@LazySingleton()
 class GetListingUseCase extends UseCase<List<ListItemEntity>, Params> {
   final ListingRepository _repository;
 

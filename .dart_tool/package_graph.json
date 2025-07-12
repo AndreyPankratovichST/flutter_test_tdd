@@ -7,7 +7,9 @@
       "name": "flutter_test_tdd",
       "version": "1.0.0+1",
       "dependencies": [
+        "auto_route",
         "bloc",
+        "cherrypick",
         "connectivity_plus",
         "cupertino_icons",
         "dio",
@@ -15,33 +17,85 @@
         "equatable",
         "flutter",
         "flutter_bloc",
-        "get_it",
-        "go_router",
-        "injectable",
+        "freezed_annotation",
+        "json_annotation",
+        "provider",
+        "retrofit",
         "shared_preferences"
       ],
       "devDependencies": [
+        "auto_route_generator",
         "build_runner",
         "flutter_lints",
         "flutter_test",
-        "injectable_generator",
-        "mockito"
+        "freezed",
+        "json_serializable",
+        "mockito",
+        "retrofit_generator"
       ]
     },
     {
-      "name": "injectable_generator",
-      "version": "2.7.0",
+      "name": "retrofit_generator",
+      "version": "9.7.0",
       "dependencies": [
         "analyzer",
         "build",
+        "built_collection",
         "code_builder",
+        "dart_style",
+        "dio",
+        "protobuf",
+        "retrofit",
+        "source_gen"
+      ]
+    },
+    {
+      "name": "json_serializable",
+      "version": "6.9.5",
+      "dependencies": [
+        "analyzer",
+        "async",
+        "build",
+        "build_config",
         "collection",
         "dart_style",
-        "glob",
-        "injectable",
+        "json_annotation",
         "meta",
         "path",
-        "recase",
+        "pub_semver",
+        "pubspec_parse",
+        "source_gen",
+        "source_helper"
+      ]
+    },
+    {
+      "name": "freezed",
+      "version": "2.5.8",
+      "dependencies": [
+        "analyzer",
+        "build",
+        "build_config",
+        "collection",
+        "dart_style",
+        "freezed_annotation",
+        "json_annotation",
+        "meta",
+        "source_gen"
+      ]
+    },
+    {
+      "name": "auto_route_generator",
+      "version": "10.2.3",
+      "dependencies": [
+        "analyzer",
+        "auto_route",
+        "build",
+        "build_runner",
+        "code_builder",
+        "dart_style",
+        "glob",
+        "lean_builder",
+        "path",
         "source_gen"
       ]
     },
@@ -139,6 +193,39 @@
       ]
     },
     {
+      "name": "provider",
+      "version": "6.1.5",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "nested"
+      ]
+    },
+    {
+      "name": "retrofit",
+      "version": "4.6.0",
+      "dependencies": [
+        "dio",
+        "meta"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.9.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "freezed_annotation",
+      "version": "2.4.4",
+      "dependencies": [
+        "collection",
+        "json_annotation",
+        "meta"
+      ]
+    },
+    {
       "name": "easy_localization",
       "version": "3.0.7+1",
       "dependencies": [
@@ -152,14 +239,14 @@
       ]
     },
     {
-      "name": "go_router",
-      "version": "16.0.0",
+      "name": "auto_route",
+      "version": "10.1.0+1",
       "dependencies": [
         "collection",
         "flutter",
-        "flutter_web_plugins",
-        "logging",
-        "meta"
+        "meta",
+        "path",
+        "web"
       ]
     },
     {
@@ -189,19 +276,9 @@
       ]
     },
     {
-      "name": "injectable",
-      "version": "2.5.0",
+      "name": "cherrypick",
+      "version": "2.1.0",
       "dependencies": [
-        "get_it",
-        "meta"
-      ]
-    },
-    {
-      "name": "get_it",
-      "version": "8.0.3",
-      "dependencies": [
-        "async",
-        "collection",
         "meta"
       ]
     },
@@ -259,19 +336,28 @@
       ]
     },
     {
-      "name": "meta",
-      "version": "1.16.0",
-      "dependencies": []
+      "name": "source_gen",
+      "version": "2.0.0",
+      "dependencies": [
+        "analyzer",
+        "async",
+        "build",
+        "dart_style",
+        "glob",
+        "path",
+        "pub_semver",
+        "source_span",
+        "yaml"
+      ]
     },
     {
-      "name": "recase",
+      "name": "protobuf",
       "version": "4.1.0",
-      "dependencies": []
-    },
-    {
-      "name": "collection",
-      "version": "1.19.1",
-      "dependencies": []
+      "dependencies": [
+        "collection",
+        "fixnum",
+        "meta"
+      ]
     },
     {
       "name": "dart_style",
@@ -299,53 +385,9 @@
       ]
     },
     {
-      "name": "analyzer",
-      "version": "7.5.5",
-      "dependencies": [
-        "_fe_analyzer_shared",
-        "collection",
-        "convert",
-        "crypto",
-        "glob",
-        "meta",
-        "package_config",
-        "path",
-        "pub_semver",
-        "source_span",
-        "watcher",
-        "yaml"
-      ]
-    },
-    {
-      "name": "glob",
-      "version": "2.1.3",
-      "dependencies": [
-        "async",
-        "collection",
-        "file",
-        "path",
-        "string_scanner"
-      ]
-    },
-    {
-      "name": "path",
-      "version": "1.9.1",
+      "name": "built_collection",
+      "version": "5.1.1",
       "dependencies": []
-    },
-    {
-      "name": "source_gen",
-      "version": "2.0.0",
-      "dependencies": [
-        "analyzer",
-        "async",
-        "build",
-        "dart_style",
-        "glob",
-        "path",
-        "pub_semver",
-        "source_span",
-        "yaml"
-      ]
     },
     {
       "name": "build",
@@ -365,6 +407,119 @@
         "package_config",
         "path",
         "pool"
+      ]
+    },
+    {
+      "name": "analyzer",
+      "version": "7.4.5",
+      "dependencies": [
+        "_fe_analyzer_shared",
+        "collection",
+        "convert",
+        "crypto",
+        "glob",
+        "meta",
+        "package_config",
+        "path",
+        "pub_semver",
+        "source_span",
+        "watcher",
+        "yaml"
+      ]
+    },
+    {
+      "name": "source_helper",
+      "version": "1.3.6",
+      "dependencies": [
+        "analyzer",
+        "source_gen"
+      ]
+    },
+    {
+      "name": "pubspec_parse",
+      "version": "1.5.0",
+      "dependencies": [
+        "checked_yaml",
+        "collection",
+        "json_annotation",
+        "pub_semver",
+        "yaml"
+      ]
+    },
+    {
+      "name": "pub_semver",
+      "version": "2.2.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.16.0",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
+      "name": "build_config",
+      "version": "1.1.2",
+      "dependencies": [
+        "checked_yaml",
+        "json_annotation",
+        "path",
+        "pubspec_parse",
+        "yaml"
+      ]
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "lean_builder",
+      "version": "0.1.0-alpha.11",
+      "dependencies": [
+        "_fe_analyzer_shared",
+        "analyzer",
+        "ansicolor",
+        "args",
+        "collection",
+        "dart_style",
+        "frontend_server_client",
+        "glob",
+        "hotreloader",
+        "lints",
+        "meta",
+        "path",
+        "source_span",
+        "stack_trace",
+        "test",
+        "watcher",
+        "xxh3",
+        "yaml"
+      ]
+    },
+    {
+      "name": "glob",
+      "version": "2.1.3",
+      "dependencies": [
+        "async",
+        "collection",
+        "file",
+        "path",
+        "string_scanner"
       ]
     },
     {
@@ -464,24 +619,6 @@
         "path",
         "stack_trace",
         "stream_channel"
-      ]
-    },
-    {
-      "name": "pubspec_parse",
-      "version": "1.5.0",
-      "dependencies": [
-        "checked_yaml",
-        "collection",
-        "json_annotation",
-        "pub_semver",
-        "yaml"
-      ]
-    },
-    {
-      "name": "pub_semver",
-      "version": "2.2.0",
-      "dependencies": [
-        "collection"
       ]
     },
     {
@@ -629,25 +766,6 @@
       ]
     },
     {
-      "name": "build_config",
-      "version": "1.1.2",
-      "dependencies": [
-        "checked_yaml",
-        "json_annotation",
-        "path",
-        "pubspec_parse",
-        "yaml"
-      ]
-    },
-    {
-      "name": "async",
-      "version": "2.13.0",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
-    },
-    {
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
@@ -760,6 +878,13 @@
       ]
     },
     {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "flutter_localizations",
       "version": "0.0.0",
       "dependencies": [
@@ -788,18 +913,6 @@
         "clock",
         "meta",
         "path"
-      ]
-    },
-    {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
-      "dependencies": [
-        "characters",
-        "collection",
-        "flutter",
-        "material_color_utilities",
-        "meta",
-        "vector_math"
       ]
     },
     {
@@ -877,12 +990,15 @@
       ]
     },
     {
-      "name": "provider",
-      "version": "6.1.5",
+      "name": "flutter_web_plugins",
+      "version": "0.0.0",
       "dependencies": [
+        "characters",
         "collection",
         "flutter",
-        "nested"
+        "material_color_utilities",
+        "meta",
+        "vector_math"
       ]
     },
     {
@@ -911,6 +1027,11 @@
       "dependencies": []
     },
     {
+      "name": "fixnum",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
       "name": "built_value",
       "version": "8.10.1",
       "dependencies": [
@@ -921,11 +1042,6 @@
       ]
     },
     {
-      "name": "built_collection",
-      "version": "5.1.1",
-      "dependencies": []
-    },
-    {
       "name": "convert",
       "version": "3.1.2",
       "dependencies": [
@@ -934,10 +1050,73 @@
     },
     {
       "name": "_fe_analyzer_shared",
-      "version": "85.0.0",
+      "version": "82.0.0",
       "dependencies": [
         "meta"
       ]
+    },
+    {
+      "name": "checked_yaml",
+      "version": "2.0.4",
+      "dependencies": [
+        "json_annotation",
+        "source_span",
+        "yaml"
+      ]
+    },
+    {
+      "name": "hotreloader",
+      "version": "4.3.0",
+      "dependencies": [
+        "collection",
+        "logging",
+        "path",
+        "stream_transform",
+        "vm_service",
+        "watcher"
+      ]
+    },
+    {
+      "name": "test",
+      "version": "1.25.15",
+      "dependencies": [
+        "analyzer",
+        "async",
+        "boolean_selector",
+        "collection",
+        "coverage",
+        "http_multi_server",
+        "io",
+        "js",
+        "matcher",
+        "node_preamble",
+        "package_config",
+        "path",
+        "pool",
+        "shelf",
+        "shelf_packages_handler",
+        "shelf_static",
+        "shelf_web_socket",
+        "source_span",
+        "stack_trace",
+        "stream_channel",
+        "test_api",
+        "test_core",
+        "typed_data",
+        "web_socket_channel",
+        "webkit_inspection_protocol",
+        "yaml"
+      ]
+    },
+    {
+      "name": "ansicolor",
+      "version": "2.0.3",
+      "dependencies": []
+    },
+    {
+      "name": "xxh3",
+      "version": "1.2.0",
+      "dependencies": []
     },
     {
       "name": "file",
@@ -952,22 +1131,6 @@
       "version": "1.0.1",
       "dependencies": [
         "web"
-      ]
-    },
-    {
-      "name": "json_annotation",
-      "version": "4.9.0",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "checked_yaml",
-      "version": "2.0.4",
-      "dependencies": [
-        "json_annotation",
-        "source_span",
-        "yaml"
       ]
     },
     {
@@ -1025,16 +1188,80 @@
       ]
     },
     {
-      "name": "nested",
-      "version": "1.0.0",
+      "name": "webkit_inspection_protocol",
+      "version": "1.2.1",
       "dependencies": [
-        "flutter"
+        "logging"
       ]
     },
     {
-      "name": "fixnum",
-      "version": "1.1.1",
+      "name": "test_core",
+      "version": "0.6.8",
+      "dependencies": [
+        "analyzer",
+        "args",
+        "async",
+        "boolean_selector",
+        "collection",
+        "coverage",
+        "frontend_server_client",
+        "glob",
+        "io",
+        "meta",
+        "package_config",
+        "path",
+        "pool",
+        "source_map_stack_trace",
+        "source_maps",
+        "source_span",
+        "stack_trace",
+        "stream_channel",
+        "test_api",
+        "vm_service",
+        "yaml"
+      ]
+    },
+    {
+      "name": "shelf_static",
+      "version": "1.1.3",
+      "dependencies": [
+        "convert",
+        "http_parser",
+        "mime",
+        "path",
+        "shelf"
+      ]
+    },
+    {
+      "name": "shelf_packages_handler",
+      "version": "3.0.2",
+      "dependencies": [
+        "path",
+        "shelf",
+        "shelf_static"
+      ]
+    },
+    {
+      "name": "node_preamble",
+      "version": "2.0.2",
       "dependencies": []
+    },
+    {
+      "name": "coverage",
+      "version": "1.15.0",
+      "dependencies": [
+        "args",
+        "cli_config",
+        "glob",
+        "logging",
+        "meta",
+        "package_config",
+        "path",
+        "source_maps",
+        "stack_trace",
+        "vm_service",
+        "yaml"
+      ]
     },
     {
       "name": "ffi",
@@ -1061,6 +1288,30 @@
         "collection",
         "meta",
         "petitparser"
+      ]
+    },
+    {
+      "name": "source_maps",
+      "version": "0.10.13",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "source_map_stack_trace",
+      "version": "2.1.2",
+      "dependencies": [
+        "path",
+        "source_maps",
+        "stack_trace"
+      ]
+    },
+    {
+      "name": "cli_config",
+      "version": "0.2.0",
+      "dependencies": [
+        "args",
+        "yaml"
       ]
     },
     {

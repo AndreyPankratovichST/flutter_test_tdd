@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test_tdd/core/logger/logger.dart';
 
-final class RouterLogger extends NavigatorObserver {
+final class RouterLogger extends AutoRouteObserver {
   final logger = Logger();
   
   @override

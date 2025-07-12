@@ -1,33 +1,33 @@
-import 'package:flutter_test_tdd/core/repository/dto.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/description_item_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class DescriptionItemDto extends DescriptionItemEntity implements Dto {
-  const DescriptionItemDto({
-    required super.id,
-    required super.title,
-    required super.date,
-    required super.description,
-    required super.image,
-  });
+part 'description_item_dto.freezed.dart';
 
-  factory DescriptionItemDto.fromJson(Map<String, dynamic> json) {
-    return DescriptionItemDto(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      date: DateTime.parse(json['published_timestamp'] as String),
-      description: json['description'] as String,
-      image: json['social_image'] as String,
-    );
-  }
+part 'description_item_dto.g.dart';
 
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'published_timestamp': date.toIso8601String(),
-      'description': description,
-      'social_image': image,
-    };
-  }
+@freezed
+class DescriptionItemDto with _$DescriptionItemDto {
+  const factory DescriptionItemDto({
+    required int id,
+    required String title,
+    @JsonKey(name: 'published_timestamp')
+    required DateTime? date,
+    @JsonKey(name: 'body')
+    required String description,
+    @JsonKey(name: 'social_image')
+    required String? image,
+  }) = _DescriptionItemDto;
+
+  factory DescriptionItemDto.fromJson(Map<String, dynamic> json) =>
+      _$DescriptionItemDtoFromJson(json);
+}
+
+extension DescriptionItemDtoX on DescriptionItemDto {
+  DescriptionItemEntity toEntity() => DescriptionItemEntity(
+    id: id,
+    title: title,
+    date: date ?? DateTime.now(),
+    description: description,
+    image: image ??  'https://static01.nyt.com/images/2025/06/03/business/00techfix-aisearch/00techfix-aisearch-googleFourByThree.jpg',
+  );
 }

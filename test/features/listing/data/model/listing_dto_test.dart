@@ -15,7 +15,7 @@ void main() {
 
   test(
     'check dto extends ListItemEntity',
-    () async => expect(tListingDto, isA<ListItemEntity>()),
+    () async => expect(tListingDto.toEntity(), isA<ListItemEntity>()),
   );
 
   group('fromJson', () {

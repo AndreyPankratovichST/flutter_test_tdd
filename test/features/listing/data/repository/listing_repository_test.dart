@@ -41,7 +41,7 @@ void main() {
     title: 'item #1',
     date: DateTime(2025, 1, 10),
   );
-  final ListItemEntity tListItemEntity = tListItemDto;
+  final ListItemEntity tListItemEntity = tListItemDto.toEntity();
   final tDescriptionItemDto = DescriptionItemDto(
     id: tListItemDto.id,
     title: tListItemDto.title,
@@ -49,7 +49,7 @@ void main() {
     description: 'Is description',
     image: 'image.png',
   );
-  final tDescriptionItemEntity = tDescriptionItemDto;
+  final tDescriptionItemEntity = tDescriptionItemDto.toEntity();
 
   void runTestsOnline(Function body) {
     group('device is online', () {
@@ -125,7 +125,7 @@ void main() {
 
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource.getListing());
-          expect(result, equals([tListItemDto]));
+          expect(result, equals([tListItemDto.toEntity()]));
         },
       );
     });

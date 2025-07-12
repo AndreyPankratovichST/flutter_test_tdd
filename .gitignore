@@ -46,3 +46,7 @@ app.*.map.json
 *.mocks.dart
 *.g.dart
 *.config.dart
+*.gr.dart
+*.freezed.dart
+/.idea/
+/.dart_tool/

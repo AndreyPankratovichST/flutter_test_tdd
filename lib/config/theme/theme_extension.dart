@@ -6,4 +6,8 @@ extension BuildContextThemeExt on BuildContext {
   TextTheme get textTheme => theme.textTheme;
 
   ColorScheme get colorScheme => theme.colorScheme;
+
+  ThemeNotifier get themeNotifier => read<ThemeNotifier>();
+
+  bool get themeIsDark => theme.brightness == Brightness.dark;
 }
