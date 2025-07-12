@@ -20,7 +20,7 @@ class ListingItem extends StatelessWidget {
         style: context.textTheme.titleMedium,
       ),
       subtitle: Text(item.date.print, style: context.textTheme.bodySmall),
-      onTap: () => context.navigateTo(DescriptionRoute(id: item.id)),
+      onTap: () => context.pushRoute(DescriptionRoute(id: item.id)),
     );
   }
 }

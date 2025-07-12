@@ -25,9 +25,9 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
 
   @override
   void initState() {
-    _descriptionBloc = getIt<DescriptionBloc>()
+    _descriptionBloc = context.get<DescriptionBloc>()
       ..add(GetDescriptionEvent(widget.id));
-    _readingBloc = getIt<ReadingBloc>();
+    _readingBloc = context.get<ReadingBloc>();
     super.initState();
   }
 

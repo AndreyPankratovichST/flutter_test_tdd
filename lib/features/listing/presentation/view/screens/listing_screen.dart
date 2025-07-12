@@ -20,7 +20,7 @@ class _ListingScreenState extends State<ListingScreen> {
 
   @override
   void initState() {
-    _listingBloc = getIt<ListingBloc>()..add(GetListingEvent());
+    _listingBloc = context.get<ListingBloc>()..add(GetListingEvent());
     super.initState();
   }
 

@@ -4,7 +4,6 @@ import 'package:flutter_test_tdd/core/errors/exception.dart';
 import 'package:flutter_test_tdd/features/dashboard/data/model/readable_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/description_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ListingLocalDataSource {
@@ -26,7 +25,6 @@ const String kDescription = 'DESCRIPTION';
 const String kListItem = 'LIST_ITEM';
 const String kReadableItems = 'READABLE_ITEMS';
 
-@LazySingleton(as: ListingLocalDataSource)
 final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
   final SharedPreferences _sharedPreferences;
 
