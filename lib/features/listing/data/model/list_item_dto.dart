@@ -1,23 +1,27 @@
 import 'package:flutter_test_tdd/core/repository/dto.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ListItemDto extends ListItemEntity implements Dto {
-  const ListItemDto({required super.id, required super.title, required super.date});
+part 'list_item_dto.freezed.dart';
 
-  factory ListItemDto.fromJson(Map<String, dynamic> json) {
-    return ListItemDto(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      date: DateTime.parse(json['published_timestamp'] as String),
-    );
-  }
+part 'list_item_dto.g.dart';
 
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'published_timestamp': date.toIso8601String(),
-    };
-  }
+@freezed
+class ListItemDto with _$ListItemDto {
+  const factory ListItemDto({
+    required int id,
+    required String title,
+    @JsonKey(name: 'published_timestamp') required DateTime date,
+  }) = _ListItemDto;
+
+  factory ListItemDto.fromJson(Map<String, dynamic> json) =>
+      _$ListItemDtoFromJson(json);
+}
+
+extension ListItemDtoX on ListItemDto {
+  ListItemEntity toEntity() => ListItemEntity(
+        id: id,
+        title: title,
+        date: date,
+      );
 }
