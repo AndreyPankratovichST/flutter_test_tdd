@@ -1,15 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_tdd/config/di/di.dart';
-import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/features/dashboard/presentation/bloc/readable/readable_bloc.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/bloc/description/description_bloc.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/bloc/reading/reading_bloc.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/view/widgets/description_view.dart';
-import 'package:flutter_test_tdd/features/widgets/apps_bar.dart';
 import 'package:flutter_test_tdd/features/widgets/error_view.dart';
 import 'package:flutter_test_tdd/features/widgets/loading_indicator.dart';
 
+@RoutePage()
 class DescriptionScreen extends StatefulWidget {
   final int id;
 
@@ -40,29 +40,24 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: context.theme.scaffoldBackgroundColor,
-      child: BlocListener<ReadingBloc, ReadingState>(
+    return Scaffold(
+      appBar: AppBar(leading: AutoLeadingButton()),
+      body: BlocListener<ReadingBloc, ReadingState>(
         bloc: _readingBloc,
         listener: _saveToReadableListener,
-        child: Column(
-          children: [
-            AppsBar(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: BlocConsumer<DescriptionBloc, DescriptionState>(
-                bloc: _descriptionBloc,
-                listener: _successLoadingListener,
-                builder: (context, state) => switch (state) {
-                  DescriptionInitialState() => LoadingIndicator(),
-                  DescriptionErrorState() => ErrorView(failure: state.failure),
-                  DescriptionSuccessState() => DescriptionView(
-                    description: state.description,
-                  ),
-                },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: BlocConsumer<DescriptionBloc, DescriptionState>(
+            bloc: _descriptionBloc,
+            listener: _successLoadingListener,
+            builder: (context, state) => switch (state) {
+              DescriptionInitialState() => LoadingIndicator(),
+              DescriptionErrorState() => ErrorView(failure: state.failure),
+              DescriptionSuccessState() => DescriptionView(
+                description: state.description,
               ),
-            ),
-          ],
+            },
+          ),
         ),
       ),
     );

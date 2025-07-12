@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_tdd/config/localization/localization_app.dart';
 import 'package:flutter_test_tdd/config/router/router_app.dart';
+import 'package:flutter_test_tdd/config/router/router_logger.dart';
 import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 
 class App extends StatelessWidget {
@@ -35,13 +36,12 @@ class _MaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = AppRouter().router;
     return MaterialApp.router(
       theme: lightTheme,
       darkTheme: darkTheme,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
+      routerConfig: AppRouter().config(
+        navigatorObservers: () => [RouterLogger()],
+      ),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
