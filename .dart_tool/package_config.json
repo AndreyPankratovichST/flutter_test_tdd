@@ -506,6 +506,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "protobuf",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/protobuf-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/provider-6.1.5",
       "packageUri": "lib/",
@@ -520,6 +526,18 @@
     {
       "name": "pubspec_parse",
       "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "retrofit",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/retrofit-4.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "retrofit_generator",
+      "rootUri": "file:///Users/pankratovich_as/.pub-cache/hosted/pub.dev/retrofit_generator-9.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },

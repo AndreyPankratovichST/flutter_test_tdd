@@ -8,7 +8,10 @@ class AppClient extends DioForNative {
   final Environment env;
 
   AppClient(this.env) {
-    options = BaseOptions(baseUrl: '${env.host}/api');
-    interceptors.addAll([ErrorInterceptor(), LoggerInterceptor()]);
+    options = BaseOptions(
+      baseUrl: env.host,
+      headers: {'Content-type': 'application/json; charset=UTF-8'},
+    );
+    interceptors.addAll([LoggerInterceptor(), ErrorInterceptor()]);
   }
 }

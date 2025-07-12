@@ -44,7 +44,7 @@ void main() {
   final ListItemEntity tListItemEntity = ListItemEntity(
     id: tListItemDto.id,
     title: tListItemDto.title,
-    date: tListItemDto.date,
+    date: tListItemDto.date!,
   );
   final tDescriptionItemDto = DescriptionItemDto(
     id: tListItemDto.id,

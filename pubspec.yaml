@@ -23,6 +23,7 @@ dependencies:
   easy_localization: ^3.0.7+1
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  retrofit: ^4.6.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,7 @@ dev_dependencies:
   auto_route_generator: ^10.2.3
   freezed: ^2.4.7
   json_serializable: ^6.9.5
+  retrofit_generator: ^9.6.0
 
 flutter:
   uses-material-design: true

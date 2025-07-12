@@ -19,6 +19,7 @@
         "flutter_bloc",
         "freezed_annotation",
         "json_annotation",
+        "retrofit",
         "shared_preferences"
       ],
       "devDependencies": [
@@ -28,7 +29,8 @@
         "flutter_test",
         "freezed",
         "json_serializable",
-        "mockito"
+        "mockito",
+        "retrofit_generator"
       ]
     },
     {
@@ -172,6 +174,14 @@
         "test_api",
         "vector_math",
         "vm_service"
+      ]
+    },
+    {
+      "name": "retrofit",
+      "version": "4.6.0",
+      "dependencies": [
+        "dio",
+        "meta"
       ]
     },
     {
@@ -1284,6 +1294,30 @@
       "version": "6.1.0",
       "dependencies": [
         "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "retrofit_generator",
+      "version": "9.7.0",
+      "dependencies": [
+        "analyzer",
+        "build",
+        "built_collection",
+        "code_builder",
+        "dart_style",
+        "dio",
+        "protobuf",
+        "retrofit",
+        "source_gen"
+      ]
+    },
+    {
+      "name": "protobuf",
+      "version": "4.1.0",
+      "dependencies": [
+        "collection",
+        "fixnum",
         "meta"
       ]
     }

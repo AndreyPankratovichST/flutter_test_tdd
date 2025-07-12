@@ -12,12 +12,12 @@ import 'listing_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([AppClient])
 void main() {
-  late ListingRemoteDataSourceImpl dataSource;
+  late ListingRemoteDataSource dataSource;
   late MockAppClient mockClient;
 
   setUp(() {
     mockClient = MockAppClient();
-    dataSource = ListingRemoteDataSourceImpl(dio: mockClient);
+    dataSource = ListingRemoteDataSource(mockClient);
   });
 
   group('get listing', () {

@@ -71,7 +71,7 @@ final class ListingModule extends Module {
   @override
   void builder(Scope currentScope) {
     bind<ListingRemoteDataSource>().toProvide(
-      () => ListingRemoteDataSourceImpl(dio: currentScope.resolve<AppClient>()),
+      () => ListingRemoteDataSource(currentScope.resolve<AppClient>()),
     );
     bind<ListingLocalDataSource>().toProvide(
       () => ListingLocalDataSourceImpl(
