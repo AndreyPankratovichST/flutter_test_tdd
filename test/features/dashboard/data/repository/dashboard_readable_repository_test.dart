@@ -25,7 +25,7 @@ void main() {
 
       final result = await repository.getReadable();
 
-      expect(result, equals(tReadableDto));
+      expect(result, equals(tReadableDto.toEntity()));
       verify(localDataSource.getReadable());
       verifyNoMoreInteractions(localDataSource);
     });
