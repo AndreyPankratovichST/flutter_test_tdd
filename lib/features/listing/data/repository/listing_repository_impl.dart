@@ -29,7 +29,7 @@ final class ListingRepositoryImpl implements ListingRepository {
     } else {
       item = await localDataSource.getDescription(id);
     }
-    return item;
+    return item.toEntity();
   }
 
   @override
@@ -43,7 +43,7 @@ final class ListingRepositoryImpl implements ListingRepository {
     } else {
       items = await localDataSource.getListing();
     }
-    return items;
+    return items.map((e) => e.toEntity()).toList();
   }
 
   @override

@@ -5,6 +5,7 @@ import 'package:flutter_test_tdd/config/environment/environment.dart';
 import 'package:flutter_test_tdd/core/client/client.dart';
 import 'package:flutter_test_tdd/core/utils/network_info.dart';
 import 'package:flutter_test_tdd/features/dashboard/data/repository/dashboard_repository_impl.dart';
+import 'package:flutter_test_tdd/features/dashboard/data/source/dashboard_local_data_source.dart';
 import 'package:flutter_test_tdd/features/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:flutter_test_tdd/features/dashboard/domain/usecase/get_readable.dart';
 import 'package:flutter_test_tdd/features/dashboard/presentation/bloc/readable/readable_bloc.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_test_tdd/features/listing/presentation/bloc/reading/read
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'di_extension.dart';
+
 part 'di_provider.dart';
 
 Future<Scope> initDi(Environment env) async {
@@ -44,18 +46,17 @@ final class AppModule extends Module {
 }
 
 final class DashboardModule extends Module {
-  static const String name = "Dashboard";
-
   @override
   void builder(Scope currentScope) {
-    bind<ListingLocalDataSource>().toProvide(
-      () => ListingLocalDataSourceImpl(
+    bind<DashboardLocalDataSource>().toProvide(
+      () => DashboardLocalDataSourceImpl(
         sharedPreferences: currentScope.resolve<SharedPreferences>(),
       ),
     );
     bind<DashboardRepository>().toProvide(
-      () =>
-          DashboardReadableImpl(currentScope.resolve<ListingLocalDataSource>()),
+      () => DashboardReadableImpl(
+        currentScope.resolve<DashboardLocalDataSource>(),
+      ),
     );
     bind<GetReadableUseCase>().toProvide(
       () => GetReadableUseCase(currentScope.resolve<DashboardRepository>()),
@@ -67,12 +68,10 @@ final class DashboardModule extends Module {
 }
 
 final class ListingModule extends Module {
-  static const String name = "Listing";
-
   @override
   void builder(Scope currentScope) {
     bind<ListingRemoteDataSource>().toProvide(
-      () => ListingRemoteDataSourceImpl(dio: currentScope.resolve<AppClient>()),
+      () => ListingRemoteDataSource(currentScope.resolve<AppClient>()),
     );
     bind<ListingLocalDataSource>().toProvide(
       () => ListingLocalDataSourceImpl(

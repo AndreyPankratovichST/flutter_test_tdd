@@ -1,6 +1,6 @@
 import 'environment.dart';
 
-const dev = Environment(name: 'dev', host: 'https://dev.to');
+const dev = Environment(name: 'dev', host: 'https://jsonplaceholder.typicode.com');
 const prod = Environment(name: 'prod', host: 'https://prod.example.com');
 
 final environments = [dev, prod];

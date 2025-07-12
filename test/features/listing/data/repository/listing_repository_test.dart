@@ -41,7 +41,11 @@ void main() {
     title: 'item #1',
     date: DateTime(2025, 1, 10),
   );
-  final ListItemEntity tListItemEntity = tListItemDto;
+  final ListItemEntity tListItemEntity = ListItemEntity(
+    id: tListItemDto.id,
+    title: tListItemDto.title,
+    date: tListItemDto.date!,
+  );
   final tDescriptionItemDto = DescriptionItemDto(
     id: tListItemDto.id,
     title: tListItemDto.title,
