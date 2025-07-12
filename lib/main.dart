@@ -5,9 +5,9 @@ import 'package:flutter_test_tdd/config/environment/environment_app.dart';
 import 'package:flutter_test_tdd/features/app/presentation/view/app.dart';
 
 void main() async {
-  initEnv();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await initDi();
-  runApp(const App());
+  final env = initEnv();
+  final scope = await initDi(env);
+  runApp(CherryPickProvider(scope: scope, child: const App()));
 }

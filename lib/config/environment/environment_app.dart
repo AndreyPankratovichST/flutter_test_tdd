@@ -5,9 +5,7 @@ const prod = Environment(name: 'prod', host: 'https://prod.example.com');
 
 final environments = [dev, prod];
 
-late final Environment env;
-
-initEnv() {
+Environment initEnv() {
   final String startEnv = String.fromEnvironment('env', defaultValue: 'dev');
-  env = environments.firstWhere((element) => element.name == startEnv);
+  return environments.firstWhere((element) => element.name == startEnv);
 }

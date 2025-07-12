@@ -4,13 +4,11 @@ import 'package:flutter_test_tdd/core/errors/failure.dart';
 import 'package:flutter_test_tdd/core/usecase/params.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/usecase/get_listing.dart';
-import 'package:injectable/injectable.dart';
 
 part 'listing_event.dart';
 
 part 'listing_state.dart';
 
-@Injectable()
 class ListingBloc extends Bloc<ListingEvent, ListingState> {
   final GetListingUseCase _getListingUseCase;
 
