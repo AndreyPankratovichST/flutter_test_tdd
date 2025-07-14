@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test_tdd/config/router/router_app.gr.dart';
+import 'package:flutter_test_tdd/config/router/routes.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 final class AppRouter extends RootStackRouter {
@@ -14,13 +15,13 @@ final class AppRouter extends RootStackRouter {
       page: HomeRoute.page,
       initial: true,
       children: [
-        AutoRoute(path: 'dashboard', page: DashboardRoute.page),
+        AutoRoute(path: Routes.dashboard, page: DashboardRoute.page),
         AutoRoute(
-          path: 'listing',
+          path: Routes.listing,
           page: ContainerRoute.page,
           children: [
             AutoRoute(path: '', page: ListingRoute.page),
-            AutoRoute(path: 'description', page: DescriptionRoute.page),
+            AutoRoute(path: Routes.description, page: DescriptionRoute.page),
           ],
         ),
       ],
