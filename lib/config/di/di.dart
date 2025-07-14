@@ -26,7 +26,10 @@ part 'di_extension.dart';
 part 'di_provider.dart';
 
 Future<Scope> initDi(Environment env) async {
-  final scope = openRootScope().installModules([AppModule(env)]);
+  final scope = openRootScope();
+  final AppModule appModule = AppModule(env);
+  await appModule.builder(scope);
+  scope.installModules([appModule]);
   return scope;
 }
 
@@ -37,6 +40,7 @@ final class AppModule extends Module {
 
   @override
   Future<void> builder(Scope currentScope) async {
+    if (bindingSet.isNotEmpty) return;
     final sharedPreferences = await SharedPreferences.getInstance();
     bind<SharedPreferences>().toInstance(sharedPreferences);
     bind<NetworkInfo>().toInstance(NetworkInfoImpl(Connectivity()));
