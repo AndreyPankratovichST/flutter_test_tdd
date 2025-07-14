@@ -14,6 +14,7 @@ final class NetworkInfoImpl implements NetworkInfo {
     final List<ConnectivityResult> connectivityResult = await connectivity
         .checkConnectivity();
     final hasConnection =
+        connectivityResult.contains(ConnectivityResult.ethernet) || // this need for ios simulator
         connectivityResult.contains(ConnectivityResult.mobile) ||
         connectivityResult.contains(ConnectivityResult.wifi);
     return hasConnection;

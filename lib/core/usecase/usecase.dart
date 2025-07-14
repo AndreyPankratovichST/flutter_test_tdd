@@ -13,8 +13,8 @@ abstract class UseCase<Type, Args extends Params?> {
       result = await method.call();
     } on ServerException catch (e) {
       failure = ServerFailure(e.toString());
-    } on CacheException catch (e) {
-      failure = CacheFailure(e.toString());
+    } on CacheException catch (_) {
+      failure = CacheFailure('Data not found');
     } catch (e) {
       failure = PlatformFailure(e.toString());
     }
