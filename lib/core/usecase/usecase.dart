@@ -6,8 +6,8 @@ import 'package:flutter_test_tdd/core/usecase/result.dart';
 abstract class UseCase<Type, Args extends Params?> {
   Future<Result<Type>> call(Args params);
 
-  Future<Result<T>> handler<T>(Future<T> Function() method) async {
-    T? result;
+  Future<Result<Type>> handler(Future<Type> Function() method) async {
+    Type? result;
     Failure? failure;
     try {
       result = await method.call();
@@ -18,6 +18,6 @@ abstract class UseCase<Type, Args extends Params?> {
     } catch (e) {
       failure = PlatformFailure(e.toString());
     }
-    return Result<T>(data: result, failure: failure);
+    return Result<Type>(data: result, failure: failure);
   }
 }
