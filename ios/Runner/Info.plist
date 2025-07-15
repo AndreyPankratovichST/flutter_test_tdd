@@ -56,5 +56,18 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+    <key>CFBundleURLTypes</key>
+    <array>
+    <dict>
+    <key>CFBundleTypeRole</key>
+    <string>Editor</string>
+    <key>CFBundleURLName</key>
+    <string>test.tdd.app</string>
+    <key>CFBundleURLSchemes</key>
+    <array>
+    <string>tdd</string>
+    </array>
+    </dict>
+    </array>
 </dict>
 </plist>

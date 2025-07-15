@@ -12,6 +12,6 @@ class AppClient extends DioForNative {
       baseUrl: env.host,
       headers: {'Content-type': 'application/json; charset=UTF-8'},
     );
-    interceptors.addAll([LoggerInterceptor(), ErrorInterceptor()]);
+    interceptors.addAll([ErrorInterceptor()]);
   }
 }
