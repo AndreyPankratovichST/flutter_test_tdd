@@ -4,7 +4,8 @@
     "all_read": "All read articles"
   },
   "failure": {
-    "invalid_id": "Invalid id"
+    "invalid_id": "Invalid id",
+    "unknown": "Unknown error"
   },
   "home": {
     "dashboard": "Dashboard",

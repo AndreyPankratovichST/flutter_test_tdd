@@ -7,6 +7,8 @@ part 'theme_text_style.dart';
 
 part 'theme_notifier.dart';
 
+part 'theme_constants.dart';
+
 final ThemeData lightTheme = ThemeData.light().copyWith(
   primaryColor: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
