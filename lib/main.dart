@@ -9,5 +9,5 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   final env = initEnv();
   final scope = await initDi(env);
-  runApp(CherryPickProvider(scope: scope, child: const App()));
+  runApp(App(scope: scope));
 }

@@ -1,4 +1,3 @@
-import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_item_dto.freezed.dart';
@@ -14,12 +13,4 @@ class ListItemDto with _$ListItemDto {
 
   factory ListItemDto.fromJson(Map<String, dynamic> json) =>
       _$ListItemDtoFromJson(json);
-}
-
-extension ListItemDtoX on ListItemDto {
-  ListItemEntity toEntity() => ListItemEntity(
-        id: id,
-        title: title,
-        date: date ?? DateTime.now(),
-      );
 }

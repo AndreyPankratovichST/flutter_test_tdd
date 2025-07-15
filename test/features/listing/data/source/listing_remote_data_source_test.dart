@@ -12,16 +12,16 @@ import 'listing_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([AppClient])
 void main() {
-  late ListingRemoteDataSource dataSource;
+  late ApiListingRemoteDataSource dataSource;
   late MockAppClient mockClient;
 
   setUp(() {
     mockClient = MockAppClient();
-    dataSource = ListingRemoteDataSource(mockClient);
+    dataSource = ApiListingRemoteDataSource(mockClient);
     when(mockClient.options).thenReturn(BaseOptions());
   });
 
-  group('get listing', () {
+  group('get articles', () {
     test('should preform a GET request on a URL', () {
       when(mockClient.fetch<List<dynamic>>(any)).thenAnswer(
         (_) async => Response(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_test_tdd/config/constants/constants.dart';
 import 'package:flutter_test_tdd/core/errors/exception.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/source/listing_local_data_source.dart';
@@ -28,8 +29,8 @@ void main() {
   );
   final tListing = [tListItemDto];
 
-  group('get listing', () {
-    test('should return listing from SharedPreferences', () async {
+  group('get articles', () {
+    test('should return articles from SharedPreferences', () async {
       when(
         mockSharedPreferences.getStringList(any),
       ).thenAnswer((_) => [fixture('list_item.json')]);
@@ -49,7 +50,7 @@ void main() {
     });
   });
 
-  group('cache listing', () {
+  group('cache articles', () {
     test('should call SharedPreferences to cache the data', () {
       when(
         mockSharedPreferences.setStringList(any, any),

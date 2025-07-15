@@ -1,9 +1,10 @@
 import 'package:flutter_test_tdd/core/utils/network_info.dart';
-import 'package:flutter_test_tdd/features/listing/data/model/description_item_dto.dart';
+import 'package:flutter_test_tdd/features/listing/data/mapper/data_mapper.dart';
+import 'package:flutter_test_tdd/features/listing/data/model/details_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/source/listing_local_data_source.dart';
 import 'package:flutter_test_tdd/features/listing/data/source/listing_remote_data_source.dart';
-import 'package:flutter_test_tdd/features/listing/domain/entity/description_item_entity.dart';
+import 'package:flutter_test_tdd/features/listing/domain/entity/details_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/repository/listing_repository.dart';
 
@@ -19,10 +20,10 @@ final class ListingRepositoryImpl implements ListingRepository {
   });
 
   @override
-  Future<DescriptionItemEntity> getDescription(int id) async {
+  Future<DetailsItemEntity> getDetails(int id) async {
     final isConnected = await networkInfo.isConnected;
 
-    late final DescriptionItemDto item;
+    late final DetailsItemDto item;
     if (isConnected) {
       item = await remoteDataSource.getDescription(id);
       localDataSource.cacheDescription(item);
@@ -45,14 +46,4 @@ final class ListingRepositoryImpl implements ListingRepository {
     }
     return items.map((e) => e.toEntity()).toList();
   }
-
-  @override
-  Future<void> saveReadableListItem(ListItemEntity listItemEntity) =>
-      localDataSource.saveReadableListItem(
-        ListItemDto(
-          id: listItemEntity.id,
-          title: listItemEntity.title,
-          date: listItemEntity.date,
-        ),
-      );
 }

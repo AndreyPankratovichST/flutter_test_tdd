@@ -1,8 +1,6 @@
 import 'package:cherrypick/cherrypick.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_tdd/config/di/di.dart';
-import 'package:flutter_test_tdd/features/dashboard/presentation/bloc/readable/readable_bloc.dart';
 
 const String scopeName = 'home';
 
@@ -21,7 +19,7 @@ class _HomeProviderState extends State<HomeProvider> {
   @override
   void initState() {
     _scope = context.scope.openSubScope(scopeName);
-    _scope.installModules([DashboardModule(), ListingModule()]);
+    _scope.installModules(homeModules);
     super.initState();
   }
 
@@ -35,14 +33,7 @@ class _HomeProviderState extends State<HomeProvider> {
   Widget build(BuildContext context) {
     return CherryPickProvider(
       scope: _scope,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => context.get<ReadableBloc>()..add(GetReadableEvent()),
-          ),
-        ],
-        child: widget.child,
-      ),
+      child: widget.child,
     );
   }
 }

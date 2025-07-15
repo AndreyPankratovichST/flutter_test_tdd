@@ -4,7 +4,7 @@ import 'package:flutter_test_tdd/core/usecase/params.dart';
 import 'package:flutter_test_tdd/core/usecase/result.dart';
 
 abstract class UseCase<Type, Args extends Params?> {
-  Future<Result<Type>> call(Args params);
+  Future<Result<Type>> call({required Args params});
 
   Future<Result<Type>> handler(Future<Type> Function() method) async {
     Type? result;
