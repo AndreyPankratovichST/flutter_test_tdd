@@ -136,7 +136,7 @@ void main() {
     test('should check if the device is online', () {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
-        mockRemoteDataSource.getDescription(tItemId),
+        mockRemoteDataSource.getDetails(tItemId),
       ).thenAnswer((_) async => tDescriptionItemDto);
 
       repository.getDetails(tItemId);
@@ -149,12 +149,12 @@ void main() {
         'should return remote data when the call to remote data source is successful',
         () async {
           when(
-            mockRemoteDataSource.getDescription(tItemId),
+            mockRemoteDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
           final result = await repository.getDetails(tItemId);
 
-          verify(mockRemoteDataSource.getDescription(tItemId));
+          verify(mockRemoteDataSource.getDetails(tItemId));
           expect(result, equals(tDescriptionItemEntity));
         },
       );
@@ -163,13 +163,13 @@ void main() {
         'should cache the data locally when the call to remote data source is successful',
         () async {
           when(
-            mockRemoteDataSource.getDescription(tItemId),
+            mockRemoteDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
           await repository.getDetails(tItemId);
 
-          verify(mockRemoteDataSource.getDescription(tItemId));
-          verify(mockLocalDataSource.cacheDescription(tDescriptionItemDto));
+          verify(mockRemoteDataSource.getDetails(tItemId));
+          verify(mockLocalDataSource.cacheDetails(tDescriptionItemDto));
         },
       );
     });
@@ -179,13 +179,13 @@ void main() {
         'should return last locally cached data when the cached data is present',
         () async {
           when(
-            mockLocalDataSource.getDescription(tItemId),
+            mockLocalDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
           final result = await repository.getDetails(tItemId);
 
           verifyZeroInteractions(mockRemoteDataSource);
-          verify(mockLocalDataSource.getDescription(tItemId));
+          verify(mockLocalDataSource.getDetails(tItemId));
           expect(result, equals(tDescriptionItemEntity));
         },
       );

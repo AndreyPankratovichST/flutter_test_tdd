@@ -9,7 +9,7 @@ part 'listing_remote_data_source.g.dart';
 abstract class ListingRemoteDataSource {
   Future<List<ListItemDto>> getListing();
 
-  Future<DetailsItemDto> getDescription(int id);
+  Future<DetailsItemDto> getDetails(int id);
 }
 
 @RestApi()
@@ -22,5 +22,5 @@ abstract class ApiListingRemoteDataSource implements ListingRemoteDataSource{
 
   @override
   @GET('/posts/{id}')
-  Future<DetailsItemDto> getDescription(@Path('id') int id);
+  Future<DetailsItemDto> getDetails(@Path('id') int id);
 }

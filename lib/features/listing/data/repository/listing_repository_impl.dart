@@ -25,10 +25,10 @@ final class ListingRepositoryImpl implements ListingRepository {
 
     late final DetailsItemDto item;
     if (isConnected) {
-      item = await remoteDataSource.getDescription(id);
-      localDataSource.cacheDescription(item);
+      item = await remoteDataSource.getDetails(id);
+      localDataSource.cacheDetails(item);
     } else {
-      item = await localDataSource.getDescription(id);
+      item = await localDataSource.getDetails(id);
     }
     return item.toEntity();
   }

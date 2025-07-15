@@ -48,7 +48,7 @@ void main() {
     });
 
     test('should emit when call get details event returns failure', () async {
-      final failure = ServerFailure('Server Failure');
+      final failure = ServerFailure();
       final result = Result<DetailsItemEntity>(data: null, failure: failure);
       provideDummy<Result<DetailsItemEntity>>(result);
 

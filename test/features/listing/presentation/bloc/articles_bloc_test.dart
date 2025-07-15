@@ -43,7 +43,7 @@ void main() {
     });
 
     test('should emit when call get articles event returns failure', () async {
-      final failure = ServerFailure('Server Failure');
+      final failure = ServerFailure();
       final result = Result<List<ListItemEntity>>(data: null, failure: failure);
       provideDummy<Result<List<ListItemEntity>>>(result);
 

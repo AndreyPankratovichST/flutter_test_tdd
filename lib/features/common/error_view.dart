@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/core/errors/failure.dart';
@@ -9,9 +10,7 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final message = failure.message.isNotEmpty
-        ? failure.message
-        : 'Unknown error';
+    final message = getFailureMessage(failure);
     return Center(
       child: Text(
         message,
@@ -20,4 +19,10 @@ class ErrorView extends StatelessWidget {
       ),
     );
   }
+
+  String getFailureMessage(Failure failure) => switch (failure) {
+      ServerFailure() => 'failure.server'.tr(),
+      PlatformFailure() => 'failure.platform'.tr(),
+      CacheFailure() => 'failure.cache'.tr(),
+    };
 }

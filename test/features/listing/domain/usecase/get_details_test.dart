@@ -45,7 +45,7 @@ void main() {
 
       final result = await useCase(params: DetailsParams(id));
 
-      expect(result.failure.runtimeType, equals(ServerFailure('').runtimeType));
+      expect(result.failure.runtimeType, equals(ServerFailure().runtimeType));
     });
 
     test('should return cache failure', () async {
@@ -53,7 +53,7 @@ void main() {
 
       final result = await useCase(params: DetailsParams(id));
 
-      expect(result.failure.runtimeType, equals(CacheFailure('').runtimeType));
+      expect(result.failure.runtimeType, equals(CacheFailure().runtimeType));
     });
   });
 }

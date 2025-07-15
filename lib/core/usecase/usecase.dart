@@ -1,5 +1,6 @@
 import 'package:flutter_test_tdd/core/errors/exception.dart';
 import 'package:flutter_test_tdd/core/errors/failure.dart';
+import 'package:flutter_test_tdd/core/logger/logger.dart';
 import 'package:flutter_test_tdd/core/usecase/params.dart';
 import 'package:flutter_test_tdd/core/usecase/result.dart';
 
@@ -11,12 +12,15 @@ abstract class UseCase<Type, Args extends Params?> {
     Failure? failure;
     try {
       result = await method.call();
-    } on ServerException catch (e) {
-      failure = ServerFailure(e.toString());
-    } on CacheException catch (_) {
-      failure = CacheFailure('Data not found');
-    } catch (e) {
-      failure = PlatformFailure(e.toString());
+    } on ServerException catch (e, st) {
+      Logger.error('ServerException: ${e.toString()}', st);
+      failure = ServerFailure();
+    } on CacheException catch (e, st) {
+      Logger.error('CacheException: ${e.toString()}', st);
+      failure = CacheFailure();
+    } catch (e, st) {
+      Logger.error('PlatformException: ${e.toString()}', st);
+      failure = PlatformFailure();
     }
     return Result<Type>(data: result, failure: failure);
   }

@@ -1,23 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 
 class Logger {
-  static final Logger _instance = Logger._internal();
+  static void info(String message, [StackTrace? stackTrace]) =>
+      _log(LogLevel.info, message, stackTrace);
 
-  factory Logger() {
-    return _instance;
-  }
+  static void warning(String message, [StackTrace? stackTrace]) =>
+      _log(LogLevel.warning, message, stackTrace);
 
-  Logger._internal();
+  static void error(String message, [StackTrace? stackTrace]) =>
+      _log(LogLevel.error, message, stackTrace);
 
-  void info(String message) => _log(LogLevel.info, message);
+  static void debug(String message, [StackTrace? stackTrace]) =>
+      _log(LogLevel.debug, message, stackTrace);
 
-  void warning(String message) => _log(LogLevel.warning, message);
-
-  void error(String message) => _log(LogLevel.error, message);
-
-  void debug(String message) => _log(LogLevel.debug, message);
-
-  void _log(LogLevel level, String message) {
+  static void _log(LogLevel level, String message, [StackTrace? stackTrace]) {
     if (!kDebugMode && level != LogLevel.error) return;
     final timestamp = DateTime.now().toIso8601String();
     final buffer = StringBuffer();
@@ -27,13 +25,12 @@ class Logger {
     buffer.write(level.name.toUpperCase());
     buffer.write(']: ');
     buffer.write(message);
-    print(buffer.toString());
+    if (stackTrace != null) {
+      buffer.write('\n');
+      buffer.write(stackTrace.toString());
+    }
+    log(buffer.toString());
   }
 }
 
-enum LogLevel {
-  info,
-  warning,
-  error,
-  debug,
-}
+enum LogLevel { info, warning, error, debug }

@@ -11,9 +11,9 @@ abstract class ListingLocalDataSource {
 
   Future<List<ListItemDto>> getListing();
 
-  Future<void> cacheDescription(DetailsItemDto description);
+  Future<void> cacheDetails(DetailsItemDto description);
 
-  Future<DetailsItemDto> getDescription(int id);
+  Future<DetailsItemDto> getDetails(int id);
 }
 
 final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
@@ -39,7 +39,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
   }
 
   @override
-  Future<void> cacheDescription(DetailsItemDto description) async {
+  Future<void> cacheDetails(DetailsItemDto description) async {
     await _sharedPreferences.setString(
       '$kDescription${description.id}',
       jsonEncode(description),
@@ -47,7 +47,7 @@ final class ListingLocalDataSourceImpl implements ListingLocalDataSource {
   }
 
   @override
-  Future<DetailsItemDto> getDescription(int id) async {
+  Future<DetailsItemDto> getDetails(int id) async {
     final jsonString = _sharedPreferences.getString('$kDescription$id');
     if (jsonString == null) throw CacheException();
 
