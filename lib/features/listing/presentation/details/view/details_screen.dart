@@ -10,8 +10,13 @@ import 'package:flutter_test_tdd/features/listing/presentation/widgets/descripti
 @RoutePage()
 class DetailsScreen extends StatefulWidget {
   final int id;
+  final String? title;
 
-  const DetailsScreen({super.key, @pathParam required this.id});
+  const DetailsScreen({
+    super.key,
+    @pathParam required this.id,
+    @queryParam this.title,
+  });
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -36,7 +41,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: AutoLeadingButton()),
+      appBar: AppBar(leading: AutoLeadingButton(), title: Text(widget.title ?? ''),),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<DetailsBloc, DetailsState>(

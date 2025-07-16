@@ -30,16 +30,16 @@
 Добавить следующий фрагмент в файл Info.plist:
 
 ```xml
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleURLName</key>
-        <string>test.tdd.app</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>tdd</string>
-        </array>
-    </dict>
+
+<key>CFBundleURLTypes</key><array>
+<dict>
+    <key>CFBundleURLName</key>
+    <string>test.tdd.app</string>
+    <key>CFBundleURLSchemes</key>
+    <array>
+        <string>tdd</string>
+    </array>
+</dict>
 </array>
 ```
 
@@ -50,40 +50,49 @@
 
 ```json
 {
-    "applinks": {
-        "details": [
-            {
-                "appIDs": ["ABCDE12345.com.example.app", "ABCDE12345.com.example.app2"],
-                "components": [
-                    {
-                        "#": "no_universal_links",
-                        "exclude": true,
-                        "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
-                    },
-                    {
-                        "/": "/buy/*",
-                        "comment": "Matches any URL with a path that starts with /buy/."
-                    },
-                    {
-                        "/": "/help/website/*",
-                        "exclude": true,
-                        "comment": "Matches any URL with a path that starts with /help/website/ and instructs the system not to open it as a universal link."
-                    },
-                    {
-                        "/": "/help/*",
-                        "?": {"articleNumber": "????"},
-                        "comment": "Matches any URL with a path that starts with /help/ and that has a query item with name 'articleNumber' and a value of exactly four characters."
-                    }
-                ]
-            }
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "ABCDE12345.com.example.app",
+          "ABCDE12345.com.example.app2"
+        ],
+        "components": [
+          {
+            "#": "no_universal_links",
+            "exclude": true,
+            "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
+          },
+          {
+            "/": "/buy/*",
+            "comment": "Matches any URL with a path that starts with /buy/."
+          },
+          {
+            "/": "/help/website/*",
+            "exclude": true,
+            "comment": "Matches any URL with a path that starts with /help/website/ and instructs the system not to open it as a universal link."
+          },
+          {
+            "/": "/help/*",
+            "?": {
+              "articleNumber": "????"
+            },
+            "comment": "Matches any URL with a path that starts with /help/ and that has a query item with name 'articleNumber' and a value of exactly four characters."
+          }
         ]
-    },
-    "webcredentials": {
-        "apps": ["ABCDE12345.com.example.app"]
-    },
-    "appclips": {
-        "apps": ["ABCDE12345.com.example.MyApp.Clip"]
-    }
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "ABCDE12345.com.example.app"
+    ]
+  },
+  "appclips": {
+    "apps": [
+      "ABCDE12345.com.example.MyApp.Clip"
+    ]
+  }
 }
 ```
 
@@ -97,19 +106,15 @@
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
-    <data
-        android:scheme="https"
-        android:host="www.example.com" />
+    <data android:scheme="https" android:host="www.example.com" />
 </intent-filter>
 
-<!-- Deep Link example -->
+    <!-- Deep Link example -->
 <intent-filter>
-    <action android:name="android.intent.action.VIEW" />
-    <category android:name="android.intent.category.DEFAULT" />
-    <category android:name="android.intent.category.BROWSABLE" />
-    <data
-        android:scheme="tdd"
-        android:host="test.tdd.app" />
+<action android:name="android.intent.action.VIEW" />
+<category android:name="android.intent.category.DEFAULT" />
+<category android:name="android.intent.category.BROWSABLE" />
+<data android:scheme="tdd" android:host="test.tdd.app" />
 </intent-filter>
 ```
 
@@ -120,16 +125,18 @@
 
 ```json
 [
-    {
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target": {
-            "namespace": "android_app",
-            "package_name": "com.example",
-            "sha256_cert_fingerprints": [
-                "14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5"
-            ]
-        }
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.example",
+      "sha256_cert_fingerprints": [
+        "14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5"
+      ]
     }
+  }
 ]
 ```
 
@@ -169,14 +176,21 @@
 Первый уровень path должен начинаться с «/», дочерние — без «/».
 
 Параметры, передаваемые в path (например, id в `${Routes.description}/:id`), должны быть объявлены в
-параметрах виджета как path-параметры. Для этого используйте аннотацию `@pathParam`, например:
+параметрах виджета как path-параметры. Аналогично и с query параметрами. Для этого используйте
+аннотацию `@pathParam` и `@queryParam`, например:
 
 ```dart
 @RoutePage()
 class DetailsScreen extends StatefulWidget {
   final int id;
+  final String? title;
 
-  const DetailsScreen({super.key, @pathParam required this.id});
+  const DetailsScreen({
+    super.key,
+    @pathParam required this.id,
+    @queryParam this.title,
+  });
+
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
@@ -185,19 +199,21 @@ class DetailsScreen extends StatefulWidget {
 Если требуется обработка только определённых маршрутов, предусмотрен `deepLinkBuilder`, например:
 
 ```dart
-MaterialApp.router(
-  routerConfig: _appRouter.config(
-    deepLinkBuilder: (deepLink) {
-      if (deepLink.path.startsWith('/products')) {
-        // continue with the platform link
-        return deepLink;
-      } else {
-        return DeepLink.defaultPath;
-        // или DeepLink.path('/')
-        // или DeepLink([HomeRoute()])
-      }
-    },
-  ),
+MaterialApp.router
+(
+routerConfig: _appRouter.config(
+deepLinkBuilder: (deepLink) {
+if (deepLink.path.startsWith('/products')) {
+// continue with the platform link
+return deepLink;
+} else {
+return DeepLink.defaultPath;
+// или DeepLink.path('/')
+// или DeepLink([HomeRoute()])
+}
+},
+)
+,
 )
 ```
 
@@ -366,7 +382,7 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
   DeepLinkBloc() : super(DeepLinkInitial()) {
     on<DeepLinkUpdateEvent>(_onDeeplinkUpdateEvent);
     _initDeepLink().then(
-              (value) => add(DeepLinkUpdateEvent(deeplink: value ?? '')),
+          (value) => add(DeepLinkUpdateEvent(deeplink: value ?? '')),
     );
   }
 
@@ -391,10 +407,8 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
     }
   }
 
-  Future<void> _onDeeplinkUpdateEvent(
-          DeepLinkUpdateEvent event,
-          Emitter<DeepLinkState> emit,
-          ) async => emit(DeepLinkLoaded(event.deeplink));
+  Future<void> _onDeeplinkUpdateEvent(DeepLinkUpdateEvent event,
+      Emitter<DeepLinkState> emit,) async => emit(DeepLinkLoaded(event.deeplink));
 
   @override
   Future<void> close() async {
