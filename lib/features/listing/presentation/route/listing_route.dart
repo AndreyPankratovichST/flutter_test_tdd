@@ -3,7 +3,7 @@ import 'package:flutter_test_tdd/config/router/router_app.gr.dart';
 import 'package:flutter_test_tdd/config/router/routes.dart';
 
 final listingRoute = AutoRoute(
-  path: '${Routes.listing}/',
+  path: Routes.listing,
   page: ContainerRoute.page,
   children: [
     AutoRoute(path: '', page: ArticlesRoute.page),

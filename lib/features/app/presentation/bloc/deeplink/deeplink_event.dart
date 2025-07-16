@@ -1,11 +1,11 @@
 part of 'deeplink_bloc.dart';
 
 @immutable
-sealed class DeeplinkEvent {}
+sealed class DeepLinkEvent {}
 
-final class DeeplinkInitialEvent extends DeeplinkEvent {}
+final class DeepLinkInitialEvent extends DeepLinkEvent {}
 
-final class DeeplinkUpdateEvent extends DeeplinkEvent {
+final class DeepLinkUpdateEvent extends DeepLinkEvent {
   final String deeplink;
-  DeeplinkUpdateEvent({required this.deeplink});
+  DeepLinkUpdateEvent({required this.deeplink});
 }

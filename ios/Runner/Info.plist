@@ -59,8 +59,6 @@
     <key>CFBundleURLTypes</key>
     <array>
     <dict>
-    <key>CFBundleTypeRole</key>
-    <string>Editor</string>
     <key>CFBundleURLName</key>
     <string>test.tdd.app</string>
     <key>CFBundleURLSchemes</key>

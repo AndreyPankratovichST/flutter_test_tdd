@@ -1,12 +1,12 @@
 part of 'deeplink_bloc.dart';
 
 @immutable
-sealed class DeeplinkState {}
+sealed class DeepLinkState {}
 
-final class DeeplinkInitial extends DeeplinkState {}
+final class DeepLinkInitial extends DeepLinkState {}
 
-final class DeeplinkLoaded extends DeeplinkState {
+final class DeepLinkLoaded extends DeepLinkState {
   final String? url;
 
-  DeeplinkLoaded(this.url);
+  DeepLinkLoaded(this.url);
 }

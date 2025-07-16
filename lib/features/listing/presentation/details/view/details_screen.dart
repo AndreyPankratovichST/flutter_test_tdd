@@ -11,7 +11,7 @@ import 'package:flutter_test_tdd/features/listing/presentation/widgets/descripti
 class DetailsScreen extends StatefulWidget {
   final int id;
 
-  const DetailsScreen({super.key, required this.id});
+  const DetailsScreen({super.key, @pathParam required this.id});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();

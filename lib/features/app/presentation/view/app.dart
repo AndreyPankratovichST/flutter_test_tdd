@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cherrypick/cherrypick.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_tdd/config/constants/constants.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_test_tdd/config/localization/localization_app.dart';
 import 'package:flutter_test_tdd/config/router/router_app.dart';
 import 'package:flutter_test_tdd/config/router/router_logger.dart';
 import 'package:flutter_test_tdd/config/theme/theme_app.dart';
-import 'package:flutter_test_tdd/core/extensions/string.dart';
 import 'package:flutter_test_tdd/core/logger/logger.dart';
 import 'package:flutter_test_tdd/features/app/presentation/bloc/deeplink/deeplink_bloc.dart';
 import 'package:provider/provider.dart';
@@ -36,32 +34,25 @@ class App extends StatelessWidget {
               create: (_) => ThemeNotifier(ThemeMode.system),
             ),
             BlocProvider(
-              create: (_) => DeeplinkBloc()..add(DeeplinkInitialEvent()),
+              create: (_) => DeepLinkBloc()..add(DeepLinkInitialEvent()),
             ),
           ],
           child: Consumer<ThemeNotifier>(
             builder: (context, notifier, _) {
-              return BlocListener<DeeplinkBloc, DeeplinkState>(
+              return BlocListener<DeepLinkBloc, DeepLinkState>(
                 listener: (context, state) {
-                  if (state is DeeplinkLoaded) {
+                  if (state is DeepLinkLoaded) {
                     final path = state.url?.replaceFirst(kAppScheme, '');
-                    Logger.info('DEEPLINK BLOC: ${path ?? 'no deeplink'}');
-                    if (path.isNullOrEmpty) {
-                      context.read<AppRouter>().pushPath(path!);
-                    }
+                    Logger.info('DEEPLINK BLOC: $path');
                   }
                 },
-                child: MaterialApp.router(
+               child: MaterialApp.router(
                   themeMode: notifier.themeMode,
                   theme: lightTheme,
                   darkTheme: darkTheme,
                   routerConfig: context.read<AppRouter>().config(
                     navigatorObservers: () => [RouterLogger()],
                     deepLinkTransformer: DeepLink.prefixStripper(kAppScheme),
-                    deepLinkBuilder: (deeplink) {
-                     return deeplink;
-                    },
-                    rebuildStackOnDeepLink: true,
                   ),
                   localizationsDelegates: context.localizationDelegates,
                   supportedLocales: context.supportedLocales,

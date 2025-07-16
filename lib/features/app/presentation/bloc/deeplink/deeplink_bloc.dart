@@ -9,7 +9,7 @@ part 'deeplink_event.dart';
 
 part 'deeplink_state.dart';
 
-class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
+class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
   static const deepLinkChannel = 'com.example.flutter_test_tdd/channel';
   static const deepLinkEvent = 'com.example.flutter_test_tdd/event';
   static const methodDeepLinkInit = 'deepLinkInit';
@@ -19,9 +19,9 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
 
   StreamSubscription? _subscription;
 
-  DeeplinkBloc() : super(DeeplinkInitial()) {
-    on<DeeplinkInitialEvent>(_onDeeplinkInitialEvent);
-    on<DeeplinkUpdateEvent>(_onDeeplinkUpdateEvent);
+  DeepLinkBloc() : super(DeepLinkInitial()) {
+    on<DeepLinkInitialEvent>(_onDeeplinkInitialEvent);
+    on<DeepLinkUpdateEvent>(_onDeeplinkUpdateEvent);
   }
 
   Future<String?> _initDeepLink() async {
@@ -43,22 +43,22 @@ class DeeplinkBloc extends Bloc<DeeplinkEvent, DeeplinkState> {
 
   void _handleDataStream(dynamic deepLink) {
     if (deepLink != null) {
-      add(DeeplinkUpdateEvent(deeplink: deepLink.toString()));
+      add(DeepLinkUpdateEvent(deeplink: deepLink.toString()));
     }
   }
 
   Future<void> _onDeeplinkInitialEvent(
-    DeeplinkInitialEvent event,
-    Emitter<DeeplinkState> emit,
+    DeepLinkInitialEvent event,
+    Emitter<DeepLinkState> emit,
   ) async {
     final initialLink = await _initDeepLink();
-    emit(DeeplinkLoaded(initialLink));
+    emit(DeepLinkLoaded(initialLink));
   }
 
   Future<void> _onDeeplinkUpdateEvent(
-    DeeplinkUpdateEvent event,
-    Emitter<DeeplinkState> emit,
-  ) async => emit(DeeplinkLoaded(event.deeplink));
+    DeepLinkUpdateEvent event,
+    Emitter<DeepLinkState> emit,
+  ) async => emit(DeepLinkLoaded(event.deeplink));
 
   @override
   Future<void> close() async {
