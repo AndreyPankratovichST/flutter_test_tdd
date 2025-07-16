@@ -33,31 +33,43 @@ class App extends StatelessWidget {
             ChangeNotifierProvider<ThemeNotifier>(
               create: (_) => ThemeNotifier(ThemeMode.system),
             ),
-            BlocProvider(
-              create: (_) => DeepLinkBloc()..add(DeepLinkInitialEvent()),
-            ),
+            // Example for use custom deep link handler
+            // BlocProvider(create: (_) => DeepLinkBloc()),
           ],
           child: Consumer<ThemeNotifier>(
             builder: (context, notifier, _) {
-              return BlocListener<DeepLinkBloc, DeepLinkState>(
-                listener: (context, state) {
-                  if (state is DeepLinkLoaded) {
-                    final path = state.url?.replaceFirst(kAppScheme, '');
-                    Logger.info('DEEPLINK BLOC: $path');
-                  }
-                },
-               child: MaterialApp.router(
-                  themeMode: notifier.themeMode,
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  routerConfig: context.read<AppRouter>().config(
-                    navigatorObservers: () => [RouterLogger()],
-                    deepLinkTransformer: DeepLink.prefixStripper(kAppScheme),
-                  ),
-                  localizationsDelegates: context.localizationDelegates,
-                  supportedLocales: context.supportedLocales,
-                  locale: context.locale,
+              // Example for use custom deep link handler
+              // return BlocListener<DeepLinkBloc, DeepLinkState>(
+              //   listener: (context, state) {
+              //     if (state is DeepLinkLoaded) {
+              //       final path = state.url.replaceFirst(kAppScheme, '');
+              //       Logger.info('DEEPLINK: $path');
+              //       context.read<AppRouter>().navigatePath(path);
+              //     }
+              //   },
+              //   child: MaterialApp.router(
+              //     themeMode: notifier.themeMode,
+              //     theme: lightTheme,
+              //     darkTheme: darkTheme,
+              //     routerConfig: context.read<AppRouter>().config(
+              //       navigatorObservers: () => [RouterLogger()],
+              //     ),
+              //     localizationsDelegates: context.localizationDelegates,
+              //     supportedLocales: context.supportedLocales,
+              //     locale: context.locale,
+              //   ),
+              // );
+              return MaterialApp.router(
+                themeMode: notifier.themeMode,
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                routerConfig: context.read<AppRouter>().config(
+                  navigatorObservers: () => [RouterLogger()],
+                  deepLinkTransformer: DeepLink.prefixStripper(kAppScheme),
                 ),
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
               );
             },
           ),

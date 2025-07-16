@@ -20,8 +20,10 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
   StreamSubscription? _subscription;
 
   DeepLinkBloc() : super(DeepLinkInitial()) {
-    on<DeepLinkInitialEvent>(_onDeeplinkInitialEvent);
     on<DeepLinkUpdateEvent>(_onDeeplinkUpdateEvent);
+    _initDeepLink().then(
+      (value) => add(DeepLinkUpdateEvent(deeplink: value ?? '')),
+    );
   }
 
   Future<String?> _initDeepLink() async {
@@ -31,9 +33,7 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
       _handleDataStream,
     );
     try {
-      final initialLink = await _methodChannel.invokeMethod(
-        methodDeepLinkInit,
-      );
+      final initialLink = await _methodChannel.invokeMethod(methodDeepLinkInit);
       return initialLink.toString();
     } catch (e) {
       Logger.error(e.toString());
@@ -45,14 +45,6 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
     if (deepLink != null) {
       add(DeepLinkUpdateEvent(deeplink: deepLink.toString()));
     }
-  }
-
-  Future<void> _onDeeplinkInitialEvent(
-    DeepLinkInitialEvent event,
-    Emitter<DeepLinkState> emit,
-  ) async {
-    final initialLink = await _initDeepLink();
-    emit(DeepLinkLoaded(initialLink));
   }
 
   Future<void> _onDeeplinkUpdateEvent(

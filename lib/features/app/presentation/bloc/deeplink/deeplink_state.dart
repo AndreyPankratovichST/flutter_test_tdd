@@ -6,7 +6,7 @@ sealed class DeepLinkState {}
 final class DeepLinkInitial extends DeepLinkState {}
 
 final class DeepLinkLoaded extends DeepLinkState {
-  final String? url;
+  final String url;
 
   DeepLinkLoaded(this.url);
 }
