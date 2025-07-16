@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_test_tdd/core/utils/network_info.dart';
-import 'package:flutter_test_tdd/features/listing/data/model/description_item_dto.dart';
+import 'package:flutter_test_tdd/features/listing/data/mapper/data_mapper.dart';
+import 'package:flutter_test_tdd/features/listing/data/model/details_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/model/list_item_dto.dart';
 import 'package:flutter_test_tdd/features/listing/data/repository/listing_repository_impl.dart';
 import 'package:flutter_test_tdd/features/listing/data/source/listing_local_data_source.dart';
@@ -42,11 +43,11 @@ void main() {
     date: DateTime(2025, 1, 10),
   );
   final ListItemEntity tListItemEntity = tListItemDto.toEntity();
-  final tDescriptionItemDto = DescriptionItemDto(
+  final tDescriptionItemDto = DetailsItemDto(
     id: tListItemDto.id,
     title: tListItemDto.title,
     date: tListItemDto.date,
-    description: 'Is description',
+    description: 'Is details',
     image: 'image.png',
   );
   final tDescriptionItemEntity = tDescriptionItemDto.toEntity();
@@ -135,10 +136,10 @@ void main() {
     test('should check if the device is online', () {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
-        mockRemoteDataSource.getDescription(tItemId),
+        mockRemoteDataSource.getDetails(tItemId),
       ).thenAnswer((_) async => tDescriptionItemDto);
 
-      repository.getDescription(tItemId);
+      repository.getDetails(tItemId);
 
       verify(mockNetworkInfo.isConnected);
     });
@@ -148,12 +149,12 @@ void main() {
         'should return remote data when the call to remote data source is successful',
         () async {
           when(
-            mockRemoteDataSource.getDescription(tItemId),
+            mockRemoteDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
-          final result = await repository.getDescription(tItemId);
+          final result = await repository.getDetails(tItemId);
 
-          verify(mockRemoteDataSource.getDescription(tItemId));
+          verify(mockRemoteDataSource.getDetails(tItemId));
           expect(result, equals(tDescriptionItemEntity));
         },
       );
@@ -162,13 +163,13 @@ void main() {
         'should cache the data locally when the call to remote data source is successful',
         () async {
           when(
-            mockRemoteDataSource.getDescription(tItemId),
+            mockRemoteDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
-          await repository.getDescription(tItemId);
+          await repository.getDetails(tItemId);
 
-          verify(mockRemoteDataSource.getDescription(tItemId));
-          verify(mockLocalDataSource.cacheDescription(tDescriptionItemDto));
+          verify(mockRemoteDataSource.getDetails(tItemId));
+          verify(mockLocalDataSource.cacheDetails(tDescriptionItemDto));
         },
       );
     });
@@ -178,13 +179,13 @@ void main() {
         'should return last locally cached data when the cached data is present',
         () async {
           when(
-            mockLocalDataSource.getDescription(tItemId),
+            mockLocalDataSource.getDetails(tItemId),
           ).thenAnswer((_) async => tDescriptionItemDto);
 
-          final result = await repository.getDescription(tItemId);
+          final result = await repository.getDetails(tItemId);
 
           verifyZeroInteractions(mockRemoteDataSource);
-          verify(mockLocalDataSource.getDescription(tItemId));
+          verify(mockLocalDataSource.getDetails(tItemId));
           expect(result, equals(tDescriptionItemEntity));
         },
       );

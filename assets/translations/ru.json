@@ -4,7 +4,8 @@
     "all_read": "Всего прочитано"
   },
   "failure": {
-    "invalid_id": "Неверный id"
+    "invalid_id": "Неверный id",
+    "unknown": "Неизвестная ошибка"
   },
   "home": {
     "dashboard": "Главная",
