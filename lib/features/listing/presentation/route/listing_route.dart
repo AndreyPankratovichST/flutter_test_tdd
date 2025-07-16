@@ -7,6 +7,6 @@ final listingRoute = AutoRoute(
   page: ContainerRoute.page,
   children: [
     AutoRoute(path: '', page: ArticlesRoute.page),
-    AutoRoute(path: Routes.description, page: DetailsRoute.page),
+    AutoRoute(path: '${Routes.description}/:id', page: DetailsRoute.page),
   ],
 );
