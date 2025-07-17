@@ -54,8 +54,7 @@
     "details": [
       {
         "appIDs": [
-          "ABCDE12345.com.example.app",
-          "ABCDE12345.com.example.app2"
+          "ABCDE12345.com.example.app"
         ],
         "components": [
           {
@@ -82,19 +81,11 @@
         ]
       }
     ]
-  },
-  "webcredentials": {
-    "apps": [
-      "ABCDE12345.com.example.app"
-    ]
-  },
-  "appclips": {
-    "apps": [
-      "ABCDE12345.com.example.MyApp.Clip"
-    ]
   }
 }
 ```
+
+ABCDE12345.com.example.app -> TeamID.BundleIdentifier
 
 ### Android
 
@@ -139,6 +130,8 @@
   }
 ]
 ```
+
+sha256_cert_fingerprints -> keytool -list -v -keystore <путь_к_файлу_keystore> -alias <алиас_ключа> -storepass <пароль_хранилища> 
 
 ---
 
