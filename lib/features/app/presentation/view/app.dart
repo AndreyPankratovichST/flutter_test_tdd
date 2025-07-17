@@ -12,6 +12,7 @@ import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/core/logger/logger.dart';
 import 'package:flutter_test_tdd/features/app/presentation/bloc/deeplink/deeplink_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_test_tdd/core/extensions/uri.dart';
 
 class App extends StatelessWidget {
   final Scope scope;
@@ -34,7 +35,7 @@ class App extends StatelessWidget {
               create: (_) => ThemeNotifier(ThemeMode.system),
             ),
             // Example for use custom deep link handler
-            // BlocProvider(create: (_) => DeepLinkBloc()),
+            BlocProvider(create: (context) => context.get<DeepLinkBloc>()),
           ],
           child: Consumer<ThemeNotifier>(
             builder: (context, notifier, _) {
@@ -42,9 +43,11 @@ class App extends StatelessWidget {
               // return BlocListener<DeepLinkBloc, DeepLinkState>(
               //   listener: (context, state) {
               //     if (state is DeepLinkLoaded) {
-              //       final path = state.url.replaceFirst(kAppScheme, '');
-              //       Logger.info('DEEPLINK: $path');
-              //       context.read<AppRouter>().navigatePath(path);
+              //       final path = state.url.fullPath;
+              //       Logger.info('DEEPLINK PATH: $path');
+              //       if (path.isNotEmpty) {
+              //         context.read<AppRouter>().navigatePath(path);
+              //       }
               //     }
               //   },
               //   child: MaterialApp.router(

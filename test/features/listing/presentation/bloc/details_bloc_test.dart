@@ -37,7 +37,7 @@ void main() {
       final result = Result(data: tDetails, failure: null);
       provideDummy<Result<DetailsItemEntity>>(result);
 
-      when(mockGetDetailsUseCase(params: any)).thenAnswer((_) async => result);
+      when(mockGetDetailsUseCase(any)).thenAnswer((_) async => result);
 
       final expected = [
         isA<DetailsSuccessState>().having((s) => s.details, 'details', tDetails),
@@ -52,7 +52,7 @@ void main() {
       final result = Result<DetailsItemEntity>(data: null, failure: failure);
       provideDummy<Result<DetailsItemEntity>>(result);
 
-      when(mockGetDetailsUseCase(params: any)).thenAnswer((_) async => result);
+      when(mockGetDetailsUseCase(any)).thenAnswer((_) async => result);
 
       final expected = [
         isA<DetailsErrorState>().having((s) => s.failure, 'failure', failure),

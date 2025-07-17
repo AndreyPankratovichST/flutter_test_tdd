@@ -4,6 +4,6 @@ part of 'deeplink_bloc.dart';
 sealed class DeepLinkEvent {}
 
 final class DeepLinkUpdateEvent extends DeepLinkEvent {
-  final String deeplink;
+  final Uri? deeplink;
   DeepLinkUpdateEvent({required this.deeplink});
 }

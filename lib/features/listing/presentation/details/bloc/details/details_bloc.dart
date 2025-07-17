@@ -20,8 +20,8 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     Emitter<DetailsState> emit,
   ) async {
     final id = event.id;
-    final result = await _getDetailsUseCase(params: DetailsParams(id));
-    result.then(
+    final result = await _getDetailsUseCase(DetailsParams(id));
+    result.fold(
       onSuccess: (value) => emit(DetailsSuccessState(value)),
       onFailure: (failure) => emit(DetailsErrorState(failure)),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_test_tdd/core/errors/exception.dart';
 import 'package:flutter_test_tdd/core/errors/failure.dart';
-import 'package:flutter_test_tdd/core/usecase/params.dart';
 import 'package:flutter_test_tdd/features/listing/domain/entity/list_item_entity.dart';
 import 'package:flutter_test_tdd/features/listing/domain/repository/listing_repository.dart';
 import 'package:flutter_test_tdd/features/listing/domain/usecase/get_articles.dart';
@@ -27,7 +26,7 @@ void main() {
     test('test get articles items', () async {
       when(repository.getListing()).thenAnswer((_) async => tListing);
 
-      final result = await useCase(params: Params());
+      final result = await useCase();
 
       expect(result.data, tListing);
       verify(repository.getListing());
@@ -37,7 +36,7 @@ void main() {
     test('should return server failure', () async {
       when(repository.getListing()).thenThrow(ServerException());
 
-      final result = await useCase(params: Params());
+      final result = await useCase();
 
       expect(result.failure.runtimeType, equals(ServerFailure().runtimeType));
     });
@@ -45,7 +44,7 @@ void main() {
     test('should return cache failure', () async {
       when(repository.getListing()).thenThrow(CacheException());
 
-      final result = await useCase(params: Params());
+      final result = await useCase();
 
       expect(result.failure.runtimeType, equals(CacheFailure().runtimeType));
     });

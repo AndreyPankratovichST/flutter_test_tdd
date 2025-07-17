@@ -199,22 +199,20 @@ class DetailsScreen extends StatefulWidget {
 Если требуется обработка только определённых маршрутов, предусмотрен `deepLinkBuilder`, например:
 
 ```dart
-MaterialApp.router
-(
-routerConfig: _appRouter.config(
-deepLinkBuilder: (deepLink) {
-if (deepLink.path.startsWith('/products')) {
-// continue with the platform link
-return deepLink;
-} else {
-return DeepLink.defaultPath;
-// или DeepLink.path('/')
-// или DeepLink([HomeRoute()])
-}
-},
-)
-,
-)
+MaterialApp.router(
+    routerConfig: _appRouter.config(
+    deepLinkBuilder: (deepLink) {
+      if (deepLink.path.startsWith('/products')) {
+        // continue with the platform link
+      return deepLink;
+      } else {
+        return DeepLink.defaultPath;
+        // или DeepLink.path('/')
+        // или DeepLink([HomeRoute()])
+      }
+    },
+  ),
+);
 ```
 
 ---
@@ -370,6 +368,85 @@ class MainActivity : FlutterActivity() {
 
 ```dart
 class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
+  final GetInitDeeplinkUseCase _getInitDeeplink;
+  final GetDeepLinkStreamUseCase _getDeepLinkStream;
+
+  StreamSubscription? _subscription;
+
+  DeepLinkBloc(this._getInitDeeplink, this._getDeepLinkStream)
+          : super(DeepLinkInitial()) {
+    on<DeepLinkUpdateEvent>(_onDeeplinkUpdateEvent);
+    _initDeepLink().then((value) => add(DeepLinkUpdateEvent(deeplink: value)));
+  }
+
+  Future<Uri?> _initDeepLink() async {
+    _subscription = _getDeepLinkStream.execute().listen(_handleDataStream);
+    final initialLink = (await _getInitDeeplink()).data;
+    return initialLink;
+  }
+
+  void _handleDataStream(Uri? deepLink) {
+    if (deepLink != null) {
+      add(DeepLinkUpdateEvent(deeplink: deepLink));
+    }
+  }
+
+  Future<void> _onDeeplinkUpdateEvent(
+          DeepLinkUpdateEvent event,
+          Emitter<DeepLinkState> emit,
+          ) async {
+    final deeplink = event.deeplink;
+    if (deeplink != null) {
+      emit(DeepLinkLoaded(deeplink));
+    }
+  }
+
+  @override
+  Future<void> close() async {
+    await _subscription?.cancel();
+    return super.close();
+  }
+}
+
+class GetInitDeeplinkUseCase extends UseCase<Uri?, void> {
+  final DeepLinkRepository _repository;
+
+  GetInitDeeplinkUseCase(this._repository);
+
+  @override
+  Future<Uri?> execute([void params]) => _repository.getInitialDeepLink();
+}
+
+class GetDeepLinkStreamUseCase extends StreamUseCase<Uri?, void> {
+  final DeepLinkRepository _repository;
+
+  GetDeepLinkStreamUseCase(this._repository);
+
+  @override
+  Stream<Uri?> execute([void params]) => _repository.getDeepLinkStream();
+}
+
+class DeepLinkRepositoryImpl extends DeepLinkRepository {
+  final DeepLinkPlatformSource _deepLinkPlatformSource;
+
+  DeepLinkRepositoryImpl(this._deepLinkPlatformSource);
+
+  @override
+  Stream<Uri?> getDeepLinkStream() =>
+          _deepLinkPlatformSource.getDeepLinkStream().transform(
+            StreamTransformer.fromHandlers(
+              handleData: (data, sink) => sink.add(Uri.tryParse(data)),
+            ),
+          );
+
+  @override
+  Future<Uri?> getInitialDeepLink() async {
+    final deepLink = await _deepLinkPlatformSource.getInitialDeepLink();
+    return Uri.tryParse(deepLink ?? '');
+  }
+}
+
+class DeepLinkPlatformSourceImpl extends DeepLinkPlatformSource {
   static const deepLinkChannel = 'com.example.flutter_test_tdd/channel';
   static const deepLinkEvent = 'com.example.flutter_test_tdd/event';
   static const methodDeepLinkInit = 'deepLinkInit';
@@ -377,44 +454,17 @@ class DeepLinkBloc extends Bloc<DeepLinkEvent, DeepLinkState> {
   late final MethodChannel _methodChannel;
   late final EventChannel _eventChannel;
 
-  StreamSubscription? _subscription;
-
-  DeepLinkBloc() : super(DeepLinkInitial()) {
-    on<DeepLinkUpdateEvent>(_onDeeplinkUpdateEvent);
-    _initDeepLink().then(
-          (value) => add(DeepLinkUpdateEvent(deeplink: value ?? '')),
-    );
-  }
-
-  Future<String?> _initDeepLink() async {
+  DeepLinkPlatformSourceImpl() {
     _methodChannel = const MethodChannel(deepLinkChannel);
     _eventChannel = const EventChannel(deepLinkEvent);
-    _subscription = _eventChannel.receiveBroadcastStream().listen(
-      _handleDataStream,
-    );
-    try {
-      final initialLink = await _methodChannel.invokeMethod(methodDeepLinkInit);
-      return initialLink.toString();
-    } catch (e) {
-      Logger.error(e.toString());
-      return null;
-    }
   }
-
-  void _handleDataStream(dynamic deepLink) {
-    if (deepLink != null) {
-      add(DeepLinkUpdateEvent(deeplink: deepLink.toString()));
-    }
-  }
-
-  Future<void> _onDeeplinkUpdateEvent(DeepLinkUpdateEvent event,
-      Emitter<DeepLinkState> emit,) async => emit(DeepLinkLoaded(event.deeplink));
 
   @override
-  Future<void> close() async {
-    await _subscription?.cancel();
-    return super.close();
-  }
+  Future<String?> getInitialDeepLink() =>
+          _methodChannel.invokeMethod(methodDeepLinkInit);
+
+  @override
+  Stream<dynamic> getDeepLinkStream() => _eventChannel.receiveBroadcastStream();
 }
 ```
 

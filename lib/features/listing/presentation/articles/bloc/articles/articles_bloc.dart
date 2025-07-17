@@ -20,7 +20,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
     Emitter<ArticlesState> emit,
   ) async {
     final result = await _getArticlesUseCase();
-    result.then(
+    result.fold(
       onSuccess: (value) => emit(ArticlesSuccessState(value)),
       onFailure: (failure) => emit(ArticlesErrorState(failure)),
     );

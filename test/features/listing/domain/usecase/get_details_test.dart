@@ -33,7 +33,7 @@ void main() {
     test('test get details item', () async {
       when(repository.getDetails(id)).thenAnswer((_) async => tDetails);
 
-      final result = await useCase(params: DetailsParams(id));
+      final result = await useCase();
 
       expect(result.data, tDetails);
       verify(repository.getDetails(id));
@@ -43,7 +43,7 @@ void main() {
     test('should return server failure', () async {
       when(repository.getDetails(id)).thenThrow(ServerException());
 
-      final result = await useCase(params: DetailsParams(id));
+      final result = await useCase();
 
       expect(result.failure.runtimeType, equals(ServerFailure().runtimeType));
     });
@@ -51,7 +51,7 @@ void main() {
     test('should return cache failure', () async {
       when(repository.getDetails(id)).thenThrow(CacheException());
 
-      final result = await useCase(params: DetailsParams(id));
+      final result = await useCase();
 
       expect(result.failure.runtimeType, equals(CacheFailure().runtimeType));
     });
