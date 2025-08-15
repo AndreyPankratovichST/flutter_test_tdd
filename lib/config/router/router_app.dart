@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test_tdd/config/router/router_app.gr.dart';
 import 'package:flutter_test_tdd/config/router/routes.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/route/listing_route.dart';
+import 'package:flutter_test_tdd/features/biometry/presentation/route/biometry_route.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 final class AppRouter extends RootStackRouter {
@@ -17,6 +18,7 @@ final class AppRouter extends RootStackRouter {
       initial: true,
       children: [listingRoute],
     ),
+    biometryRoute,
   ];
 }
 

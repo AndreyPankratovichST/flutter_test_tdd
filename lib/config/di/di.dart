@@ -11,6 +11,7 @@ import 'package:flutter_test_tdd/features/app/domain/usecase/get_deeplink_stream
 import 'package:flutter_test_tdd/features/app/domain/usecase/get_init_deeplink.dart';
 import 'package:flutter_test_tdd/features/app/presentation/bloc/deeplink/deeplink_bloc.dart';
 import 'package:flutter_test_tdd/features/listing/listing_module.dart';
+import 'package:flutter_test_tdd/features/biometry/biometry_module.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'di_extension.dart';
@@ -21,7 +22,7 @@ Future<Scope> initDi(Environment env) async {
   final scope = openRootScope();
   final AppModule appModule = AppModule(env);
   await appModule.builder(scope);
-  scope.installModules([appModule]);
+  scope.installModules([appModule, ...commonModules]);
   return scope;
 }
 
@@ -64,3 +65,5 @@ final class AppModule extends Module {
 }
 
 final homeModules = [ListingModule()];
+
+final commonModules = [BiometryModule()];
