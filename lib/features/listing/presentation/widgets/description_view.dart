@@ -11,7 +11,7 @@ class DescriptionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: elementsSpacing,
+      spacing: spacingM,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(

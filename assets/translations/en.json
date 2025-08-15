@@ -10,5 +10,44 @@
   "home": {
     "dashboard": "Dashboard",
     "listing": "Articles"
+  },
+  "biometry": {
+    "title": "Biometry",
+    "status": {
+      "title": "Biometry status",
+      "hint": "Press \"Check availability\"",
+      "available": "Available",
+      "type": "Type",
+      "enabled": "Enabled",
+      "error": "Error"
+    },
+    "actions": {
+      "check": "Check availability",
+      "auth": "Authenticate",
+      "enable": "Enable biometry",
+      "disable": "Disable biometry"
+    },
+    "auth": {
+      "reason": "Please confirm your identity",
+      "success": "Authentication successful!",
+      "fail": "Authentication failed"
+    },
+    "enable": {
+      "success": "Biometry enabled!",
+      "fail": "Failed to enable biometry"
+    },
+    "disable": {
+      "success": "Biometry disabled!",
+      "fail": "Failed to disable biometry"
+    },
+    "type": {
+      "fingerprint": "Fingerprint",
+      "face": "Face recognition",
+      "iris": "Iris",
+      "none": "Not supported"
+    },
+    "error": {
+      "prefix": "Error:"
+    }
   }
 }
