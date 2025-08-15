@@ -60,7 +60,7 @@ class BiometryPlatformSourceImpl implements BiometryPlatformSource {
     } else if (availableBiometrics.contains(BiometricType.iris)) {
       return BiometryTypeDto.iris;
     } else {
-      return BiometryTypeDto.none;
+      return BiometryTypeDto.face;
     }
   }
 }
