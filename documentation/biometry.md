@@ -50,6 +50,8 @@
 <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 ```
 
+## Обязательно заменить FlutterActivity на FlutterFragmentActivity в MainActivity.kts
+
 ---
 
 ## Использование
