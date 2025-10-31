@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_tdd/config/di/di.dart';
 import 'package:flutter_test_tdd/config/theme/theme_app.dart';
 import 'package:flutter_test_tdd/features/biometry/presentation/bloc/biometry/biometry_bloc.dart';
 import 'package:flutter_test_tdd/features/biometry/presentation/bloc/biometry/biometry_event.dart';
@@ -16,7 +15,7 @@ class BiometryDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          context.get<BiometryBloc>()..add(const CheckBiometryAvailability()),
+          context.read<BiometryBloc>()..add(const CheckBiometryAvailability()),
       child: Dialog(
         insetPadding: EdgeInsets.symmetric(
           horizontal: dialogInsetHorizontal,

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_tdd/config/di/di.dart';
 import 'package:flutter_test_tdd/features/common/refresh_container.dart';
 import 'package:flutter_test_tdd/features/common/error_view.dart';
 import 'package:flutter_test_tdd/features/common/loading_indicator.dart';
@@ -24,7 +23,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
   @override
   void initState() {
     _refreshController = RefreshController();
-    _listingBloc = context.get<ArticlesBloc>()..add(GetArticlesEvent());
+    _listingBloc = context.read<ArticlesBloc>()..add(GetArticlesEvent());
     super.initState();
   }
 

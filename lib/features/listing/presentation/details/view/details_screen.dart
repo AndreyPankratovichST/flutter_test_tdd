@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_tdd/config/di/di.dart';
 import 'package:flutter_test_tdd/features/common/error_view.dart';
 import 'package:flutter_test_tdd/features/common/loading_indicator.dart';
 import 'package:flutter_test_tdd/features/listing/presentation/details/bloc/details/details_bloc.dart';
@@ -27,7 +26,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   void initState() {
-    _descriptionBloc = context.get<DetailsBloc>()
+    _descriptionBloc = context.read<DetailsBloc>()
       ..add(GetDetailsEvent(widget.id));
     super.initState();
   }

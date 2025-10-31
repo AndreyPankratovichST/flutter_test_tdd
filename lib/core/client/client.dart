@@ -13,4 +13,8 @@ class AppClient extends DioForNative {
     );
     interceptors.addAll([ErrorInterceptor()]);
   }
+
+  void dispose() {
+    close(force: true);
+  }
 }

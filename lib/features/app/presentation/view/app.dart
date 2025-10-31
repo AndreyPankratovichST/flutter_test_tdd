@@ -1,42 +1,33 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cherrypick/cherrypick.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_tdd/config/constants/constants.dart';
-import 'package:flutter_test_tdd/config/di/di.dart';
 import 'package:flutter_test_tdd/config/localization/localization_app.dart';
+import 'package:flutter_test_tdd/config/provider/app_group.dart';
+import 'package:flutter_test_tdd/config/provider/init_provider.dart';
 import 'package:flutter_test_tdd/config/router/router_app.dart';
 import 'package:flutter_test_tdd/config/router/router_logger.dart';
 import 'package:flutter_test_tdd/config/theme/theme_app.dart';
-import 'package:flutter_test_tdd/core/logger/logger.dart';
-import 'package:flutter_test_tdd/features/app/presentation/bloc/deeplink/deeplink_bloc.dart';
+import 'package:flutter_test_tdd/core/errors/failure.dart';
+import 'package:flutter_test_tdd/features/common/error_view.dart';
+import 'package:flutter_test_tdd/features/common/loading_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_test_tdd/core/extensions/uri.dart';
 
 class App extends StatelessWidget {
-  final Scope scope;
-
-  const App({super.key, required this.scope});
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CherryPickProvider(
-      scope: scope,
-      child: EasyLocalization(
-        supportedLocales: supportLocales,
-        fallbackLocale: defaultLocale,
-        useFallbackTranslationsForEmptyResources: true,
-        path: translationsPath,
-        child: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<AppRouter>(create: (_) => AppRouter()),
-            ChangeNotifierProvider<ThemeNotifier>(
-              create: (_) => ThemeNotifier(ThemeMode.system),
-            ),
-            // Example for use custom deep link handler
-            BlocProvider(create: (context) => context.get<DeepLinkBloc>()),
-          ],
+    return InitProvider(
+      loadingWidget: LoadingIndicator(),
+      errorWidget: ErrorView(failure: PlatformFailure()),
+      loadedWidget: MultiProvider(
+        providers: appGroup,
+        child: EasyLocalization(
+          supportedLocales: supportLocales,
+          fallbackLocale: defaultLocale,
+          useFallbackTranslationsForEmptyResources: true,
+          path: translationsPath,
           child: Consumer<ThemeNotifier>(
             builder: (context, notifier, _) {
               // Example for use custom deep link handler
